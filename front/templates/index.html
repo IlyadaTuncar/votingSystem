@@ -1,9 +1,99 @@
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<title>Bachelor</title>
+		<style>
+			.navbar-custom {
+				background-color: #10253e;
+			}
+			.root {
 
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-
-</body>
+				background-color: #10253e;
+			}
+			.content-block {
+				background-color: rgb(255,255,255);
+				border: 1px solid rgb(233,234,239);
+				border-radius: 8px;
+				padding-top: 15px;
+				padding-bottom: 15px;
+				margin-bottom: 20px;
+			}
+			.content-block-title {
+				font-size: 19px!important;
+				font-weight: 700;
+				color: #10253e;
+				text-transform: uppercase;
+			}
+			.col-xs-12 {
+				width: 100%;
+				float: left;
+				position: relative;
+				min-height: 1px;
+				padding-right: 15px;
+				padding-left: 15px;
+			}
+			.button--full{
+				width: 50%;
+				text-align: center;
+			}
+			#avstemning_button{
+				font-size: 15px!important;
+				height: 60px;
+				text-transform: uppercase;
+				display: inline-block;
+				background-color: #10253e;
+				color: #FFF;
+				border: .25rem solid #10253e;
+				border-bottom: 0;
+				box-shadow: 0 .25rem 0 #00AEEA;
+				font-family: Arial, Helvetica, sans-serif;
+				font-style: normal;
+				font-weight: 700;
+				margin-bottom: 20px;
+			}
+			body{
+				background-color: #f5f6fa;
+			}
+			.row{
+				margin-bottom: 10px;
+				margin-left: auto;
+			}
+			.col-sm{
+				margin-bottom: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<nav class="navbar navbar-custom">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">
+						<img class="bilde" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Eliteserien logo" style="width:150px; height:50px;">
+					</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container main-body-container">
+			<div class="col-xs-12">
+				<div class="content-block row">
+					<div class="text-center content content-block-title col-xs-12">
+						<span>En midlertidig startsside</span>
+					</div>
+				</div>
+				<div class="content-block row">
+					<div class="text-center content content-block-title col-xs-12">
+						<button id="avstemning_button" class="button button--full" type="submit">Admin</button>
+					</div>
+					<div class="text-center content content-block-title col-xs-12">
+						<button id="avstemning_button" class="button button--full" type="submit">Kunde</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
 </html>
