@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="../style/fanside.css">
+		<title>Products</title>
+		<script src="../JS/vidoeplaying.js"></script>
+	</head>
+	<body>
+		<div class="navbar">
+			<a class="active" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
+			<a href="#"><i class="fa fa-fw fa-search"></i> Search</a>
+			<a href="#"><i class="fa fa-fw fa-envelope"></i> Contact</a>
+			<a href="#"><i class="fa fa-fw fa-user"></i> Login</a>
+		</div>
+		<p></p>
+		<div class="videoTab">
+			<button class="tablinks" onclick="openVideo(event, 'video1')">Video1</button>
+			<button class="tablinks" onclick="openVideo(event, 'video2')">Video2</button>
+			<button class="tablinks" onclick="openVideo(event, 'video3')">Video3</button>
+		</div>
+		
+		<div class="goal-showcase">
+			<video
+				id="videoPlayer"
+				class="video-js vjs-big-play-centered"
+				controls
+				preload="auto"
+				width="640"
+				height="264"
+				data-setup="{}"
+					>
+				<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2962:5767000:5802000/Manifest.m3u8" type="application/x-mpegURL" />
+			</video>
+		</div>
+    	
+		<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+    </body>
+</html>
