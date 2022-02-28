@@ -4,6 +4,7 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="../JS/main.js"></script>
     	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<title>Bachelor</title>
@@ -41,7 +42,7 @@
 				width: 50%;
 				text-align: center;
 			}
-			#avstemning_button{
+			#admin_button{
 				font-size: 15px!important;
 				height: 60px;
 				text-transform: uppercase;
@@ -87,10 +88,10 @@
 				</div>
 				<div class="content-block row">
 					<div class="text-center content content-block-title col-xs-12">
-						<button id="avstemning_button" class="button button--full" type="submit">Admin</button>
+						<button id="admin_button" class="button button--full" type="submit" onclick="openAdmin()">Admin</button>
 					</div>
 					<div class="text-center content content-block-title col-xs-12">
-						<button id="avstemning_button" class="button button--full" type="submit">Kunde</button>
+						<button id="kunde_button" class="button button--full" type="submit" onclick="openKunde()">Kunde</button>
 					</div>
 				</div>
 			</div>
