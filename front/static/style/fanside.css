@@ -1,49 +1,45 @@
-.navbar {
-	width: 100%;
-	background-color: #555;
-	overflow: auto;
-  }
-  
-  
-  .navbar a {
+.navbar-custom {
+	background-color: #10253e;
+}
+.root {
+
+	background-color: #10253e;
+}
+body{
+	background-color: #f5f6fa;
+}
+#videoBoks {
+	width: 55%;
 	float: left;
-	text-align: center;
-	padding: 12px;
-	color: white;
-	text-decoration: none;
-	font-size: 17px;
-  }
-  
-  
-  .navbar a:hover {
-	background-color: #000;
-  }
-  
-  
-  .active {
-	background-color: #003a86;
-  }
-  
-  
-  @media screen and (max-width: 500px) {
-	.navbar a {
-	  float: none;
-	  display: block;
-	}
-  }
-  
-  * {box-sizing: border-box}
-  
-  
-  .videoTab {
+	position: relative;
+	min-height: 1px;
+}
+#listeBoks{
+	width: 35%;
 	float: right;
+	position: relative;
+	min-height: 1px;
+}
+.main-body-container{
+	height: 40%;
+}
+.content-block {
+	background-color: rgb(255,255,255);
+	border: 1px solid rgb(233,234,239);
+	border-radius: 8px;
+	padding-top: 15px;
+} 
+  
+.videoTab {
+	float: inherit;
 	border: 1px solid #ccc;
 	background-color: #f1f1f1;
-	width: 30%;
+	width: 100%;
 	height: 300px;
-  }
+	margin: 30px;
+}
   
-  .videoTab button {
+.videoTab button {
 	display: block;
 	background-color: inherit;
 	color: black;
@@ -54,25 +50,19 @@
 	text-align: left;
 	cursor: pointer;
 	transition: 0.3s;
-  }
+}
   
-  .videoTab button:hover {
+.videoTab button:hover {
 	background-color: #ddd;
-  }
+}
   
-  .videoTab button.active {
+.videoTab button.active {
 	background-color: #ccc;
-  }
+}
   
-  .videoContent {
-	float: left;
-	padding: 0px 12px;
-	border: 1px solid #ccc;
-	width: 70%;
-	border-left: none;
-	height: 300px;
-  }
-  
-  .goal-showcase{
-	  float: left;	
-  }
+.goal-showcase{
+	  float: inherit;	
+	  margin: 30px;
+	  width: 100%;
+	  display: block;
+}
