@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="/JS/fanside.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../style/fanside.css">
+		<link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+		<title>Bachelor</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-custom">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">
+						<img class="bilde" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Eliteserien logo" style="width:150px; height:50px;">
+					</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container main-body-container">
+			<div id="videoBoks" class="col-xs-12">
+				<div class="content-block row">
+					<div class="goal-showcase">
+						<video
+							id="videoPlayer"
+							class="video-js vjs-big-play-centered"
+							controls
+							preload="auto"
+							width="465"
+							height="262"
+							data-setup="{}"
+								>
+							<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2962:5767000:5802000/Manifest.m3u8" type="application/x-mpegURL" />
+						</video>
+					</div> 
+					<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+				</div>
+			</div>
+			<div id="listeBoks" class="col-xs-12">
+				<div class="content-block row">
+					<div class="videoTab">
+						<button class="tablinks" onclick="openVideo(event, 'video1')">Video1</button>
+						<button class="tablinks" onclick="openVideo(event, 'video2')">Video2</button>
+						<button class="tablinks" onclick="openVideo(event, 'video3')">Video3</button>
+					</div>
+				</div>
+			</div>
+		</div>
+    </body>
+</html>

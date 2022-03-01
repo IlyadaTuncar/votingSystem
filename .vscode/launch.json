@@ -1,4 +1,27 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 }
+=======
+	"configurations": [
+
+		{
+			"name": "Python: Flask",
+			"type": "python",
+			"request": "launch",
+			"module": "flask",
+			"env": { "FLASK_APP": "back/admin.py", "FLASK_ENV": "development" },
+			"args": ["run", "--no-debugger"],
+			"jinja": true
+		},
+		{
+			"name": "Python: Current File",
+			"type": "python",
+			"request": "launch",
+			"program": "${file}",
+			"console": "integratedTerminal"
+		}
+	]
+}
+>>>>>>> 575645d1d44c0081e0dd449bbe5f8066a6369a8f
