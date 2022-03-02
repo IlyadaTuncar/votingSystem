@@ -13,11 +13,7 @@ app = Flask(__name__,
 @app.route('/', methods = ['GET','POST'])
 def output():
     # serve index template
-	
-	if request.method == 'POST':
-		return redirect(url_for('serve_admin'))
-	else:
-		return render_template('index.html')
+	return render_template('index.html')
 
 
 @app.route('/admin', methods = ['GET', 'POST'])
