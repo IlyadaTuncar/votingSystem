@@ -1,11 +1,14 @@
 let videoList = [
-	"https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5001000:5036000/Manifest.m3u8",
+	"https://api.forzasys.com/eliteserien/playlist.m3u8/2962:1633000:1668000/Manifest.m3u8",
 	"https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8",
 	"https://api.forzasys.com/eliteserien/playlist.m3u8/2962:5767000:5802000/Manifest.m3u8"
 ]
 
+function updateVideoist(newList){
+	videoList = newList
+}
+
 function openVideo(event, videoNr){
-	
 	var videoElm = videojs("videoPlayer");
     //console.log(videoNr)
 
@@ -37,4 +40,14 @@ function openVideo(event, videoNr){
 	*/
 
 
+}
+
+function getOptions(){
+	$.get('/get_options', function ( data ){	
+		newVideos = []
+		for(o of data.options){
+			newVideos.push(o.video_url)
+		}
+		updateVideoist(newVideos);
+	});
 }
