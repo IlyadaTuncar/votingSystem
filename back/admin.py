@@ -31,12 +31,20 @@ for x in range(3):
  		"options": options
 		})
 
-@app.route('/get_options', methods = ['GET','POST'])
+@app.route('/get_options', methods = ['GET'])
 def get_options():
     # serve index template
 	#testing
 	data = polls[1]
 	return jsonify(data)
+
+
+@app.route('/create_poll', methods = ['POST'])
+def create_poll():
+	request_data = request.get_json()
+	print(request_data)
+	return "rar return"
+
 
 @app.route('/', methods = ['GET','POST'])
 def output():

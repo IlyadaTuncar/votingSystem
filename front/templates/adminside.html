@@ -7,8 +7,9 @@
     	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="../style/adminside.css">
-		<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+		<link rel="shortcut icon" href="#">
 		<link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+		<script src="/JS/adminside.js"></script>
 		<title>Bachelor</title>
 	</head>
 	<body>
@@ -33,8 +34,8 @@
 						<div class="row">
 							<div class="col-sm">
 								<div>
-									<input type="checkbox" id="scales" name="scales">
-									<label for="scales">Velg denne videoen</label>
+									<input type="checkbox" id="option1" name="option1" data-vidlink="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8">
+									<label for="option1">Velg denne videoen</label>
 								</div>
 								<video 
 									id="my-video"
@@ -59,8 +60,8 @@
 							</div>
 							<div class="col-sm">
 								<div>
-									<input type="checkbox" id="scales" name="scales">
-									<label for="scales">Velg denne videoen</label>
+									<input type="checkbox" id="option2" name="option2" data-vidlink="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8">
+									<label for="option2">Velg denne videoen</label>
 								</div>
 								<video 
 									id="my-video"
@@ -85,168 +86,8 @@
 							</div>
 							<div class="col-sm">
 								<div>
-									<input type="checkbox" id="scales" name="scales">
-									<label for="scales">Velg denne videoen</label>
-								</div>
-								<video 
-									id="my-video"
-									class="video-js vjs-big-play-centered"
-									controls
-									preload="auto"
-									width="640"
-									height="264"
-									poster="https://d22hh18o76pkhl.cloudfront.net/mediabank/thumb/eliteserien/2966/05409.jpg"
-									data-setup="{}"
-									>
-									<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8" 
-									type="application/x-mpegURL" />
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-										<a href="https://videojs.com/html5-video-support/" target="_blank"
-										>supports HTML5 video</a>
-									</p>
-								</video>
-								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm">
-								<div>
-									<input type="checkbox" id="scales" name="scales">
-									<label for="scales">Velg denne videoen</label>
-								</div>
-								<video 
-									id="my-video"
-									class="video-js vjs-big-play-centered"
-									controls
-									preload="auto"
-									width="320"
-									height="180"
-									poster="https://d22hh18o76pkhl.cloudfront.net/mediabank/thumb/eliteserien/2966/05409.jpg"
-									data-setup="{}"
-									>
-									<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8" 
-									type="application/x-mpegURL" />
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-										<a href="https://videojs.com/html5-video-support/" target="_blank"
-										>supports HTML5 video</a>
-									</p>
-								</video>
-								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-							</div>
-							<div class="col-sm">
-								<div>
-									<input type="checkbox" id="scales" name="scales">
-									<label for="scales">Velg denne videoen</label>
-								</div>
-								<video 
-									id="my-video"
-									class="video-js vjs-big-play-centered"
-									controls
-									preload="auto"
-									width="640"
-									height="264"
-									poster="https://d22hh18o76pkhl.cloudfront.net/mediabank/thumb/eliteserien/2966/05409.jpg"
-									data-setup="{}"
-									>
-									<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8" 
-									type="application/x-mpegURL" />
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-										<a href="https://videojs.com/html5-video-support/" target="_blank"
-										>supports HTML5 video</a>
-									</p>
-								</video>
-								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-							</div>
-							<div class="col-sm">
-								<div>
-									<input type="checkbox" id="scales" name="scales">
-									<label for="scales">Velg denne videoen</label>
-								</div>
-								<video 
-									id="my-video"
-									class="video-js vjs-big-play-centered"
-									controls
-									preload="auto"
-									width="640"
-									height="264"
-									poster="https://d22hh18o76pkhl.cloudfront.net/mediabank/thumb/eliteserien/2966/05409.jpg"
-									data-setup="{}"
-									>
-									<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8" 
-									type="application/x-mpegURL" />
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-										<a href="https://videojs.com/html5-video-support/" target="_blank"
-										>supports HTML5 video</a>
-									</p>
-								</video>
-								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm">
-								<div>
-									<input type="checkbox" id="scales" name="scales">
-									<label for="scales">Velg denne videoen</label>
-								</div>
-								<video 
-									id="my-video"
-									class="video-js vjs-big-play-centered"
-									controls
-									preload="auto"
-									width="320"
-									height="180"
-									poster="https://d22hh18o76pkhl.cloudfront.net/mediabank/thumb/eliteserien/2966/05409.jpg"
-									data-setup="{}"
-									>
-									<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8" 
-									type="application/x-mpegURL" />
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-										<a href="https://videojs.com/html5-video-support/" target="_blank"
-										>supports HTML5 video</a>
-									</p>
-								</video>
-								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-							</div>
-							<div class="col-sm">
-								<div>
-									<input type="checkbox" id="scales" name="scales">
-									<label for="scales">Velg denne videoen</label>
-								</div>
-								<video 
-									id="my-video"
-									class="video-js vjs-big-play-centered"
-									controls
-									preload="auto"
-									width="640"
-									height="264"
-									poster="https://d22hh18o76pkhl.cloudfront.net/mediabank/thumb/eliteserien/2966/05409.jpg"
-									data-setup="{}"
-									>
-									<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8" 
-									type="application/x-mpegURL" />
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-										<a href="https://videojs.com/html5-video-support/" target="_blank"
-										>supports HTML5 video</a>
-									</p>
-								</video>
-								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-							</div>
-							<div class="col-sm">
-								<div>
-									<input type="checkbox" id="scales" name="scales">
-									<label for="scales">Velg denne videoen</label>
+									<input type="checkbox" id="option3" name="option3" data-vidlink="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8">
+									<label for="option3">Velg denne videoen</label>
 								</div>
 								<video 
 									id="my-video"
@@ -277,7 +118,7 @@
 				</div>
 				<div class="content-block row">
 					<div class="text-center content content-block-title col-xs-12">
-						<button id="avstemning_button" class="button button--full" type="submit">Opprett avstemning</button>
+						<button id="avstemning_button" class="button button--full" type="submit" onclick="createPoll()">Opprett avstemning</button>
 					</div>
 				</div>
 			</div>
