@@ -1,7 +1,7 @@
 #!flask/bin/python
 import sys
-import os
-from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for
+import json
+from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
 import random, json
 
 app = Flask(__name__,
@@ -9,6 +9,34 @@ app = Flask(__name__,
 			static_url_path='', 
             static_folder='../front/static',)
 
+polls = []
+for x in range(3):
+
+	options = [
+		{
+		"video_url":"https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5001000:5036000/Manifest.m3u8",
+		"video_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+			},
+		{
+		"video_url":"https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8"
+			},
+		{
+		"video_url":"https://api.forzasys.com/eliteserien/playlist.m3u8/2962:6340000:6375000/Manifest.m3u8"
+		}
+		]
+
+	polls.append({
+  		"poll_id": x,
+  		"poll_description": "This is a poll",
+ 		"options": options
+		})
+
+@app.route('/get_options', methods = ['GET','POST'])
+def get_options():
+    # serve index template
+	#testing
+	data = polls[1]
+	return jsonify(data)
 
 @app.route('/', methods = ['GET','POST'])
 def output():
