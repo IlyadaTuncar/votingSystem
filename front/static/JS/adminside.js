@@ -8,14 +8,20 @@ function createPoll(){
 	}
 	
 	for(cb of markedCheckboxes){
+		//per nå legger vi bare til video linken, men senere skal vi legge til et helt option object
+		//et option object inkluderer tittel på mål, tekst beskrivelse, og video link
 		options.push(createOption(cb.dataset.vidlink))
 	}
+	//oppretter et poll object
 	let poll = {"options" : options, "title": "this is a poll"}
+	
+	//poster poll objectet til backend
 	postSetPoll(poll)
 	return
 }
 
 //Denne metoden skal senere ta inn tittel og text i tillegg
+//Returnerer et json object
 function createOption(link){
 	return {"video_url":link}
 }
