@@ -1,8 +1,8 @@
 #!flask/bin/python
 import sys
-import json
+import requests
 from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
-import random, json
+import json
 
 app = Flask(__name__,
 			template_folder='../front/templates',
@@ -41,9 +41,9 @@ def get_options():
 
 @app.route('/create_poll', methods = ['POST'])
 def create_poll():
-	request_data = request.get_json()
+	request_data = request.json
 	print(request_data)
-	return "rar return"
+	return "Her er req data:"
 
 
 @app.route('/', methods = ['GET','POST'])

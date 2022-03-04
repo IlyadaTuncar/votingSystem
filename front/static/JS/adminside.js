@@ -1,3 +1,4 @@
+
 function createPoll(){
 	options = []
 	let markedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
@@ -12,8 +13,7 @@ function createPoll(){
 	}
 	let poll = {"options" : options, "title": "this is a poll"}
 	console.log(poll)
-	data = {"poll":"peopoll"}
-	postSetPoll(data)
+	postSetPoll(poll)
 	return
 }
 
@@ -24,5 +24,14 @@ function createOption(link){
 
 
 function postSetPoll(poll){
-	$.post('/create_poll', poll);
+	$.ajax({
+		url:'/create_poll',
+		method:"POST",
+		data:JSON.stringify(poll),
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+		success: function(){
+			//console.log('Success')
+		}
+	})
 }
