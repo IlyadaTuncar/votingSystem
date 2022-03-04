@@ -8,11 +8,9 @@ function createPoll(){
 	}
 	
 	for(cb of markedCheckboxes){
-		console.log(cb.dataset.vidlink)
 		options.push(createOption(cb.dataset.vidlink))
 	}
 	let poll = {"options" : options, "title": "this is a poll"}
-	console.log(poll)
 	postSetPoll(poll)
 	return
 }
