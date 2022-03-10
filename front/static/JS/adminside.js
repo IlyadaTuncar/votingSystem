@@ -39,3 +39,35 @@ function postSetPoll(poll){
 		}
 	})
 }
+
+$(document).ready(function(){  
+	$('#opprett_button').click(function(){  
+		 var tittel = $('#tittel').val();  
+		 var beskrivelse = $('#beskrielse').val();  
+		 if(tittel != '' && beskrivelse != '')  
+		 {  
+			  $.ajax({  
+				   url:"/action",  
+				   method:"POST",  
+				   data: {tittel:tittel, beskrivelse:beskrivelse},  
+				   success:function(data)  
+				   {  
+						alert(data);  
+						if(data == 'No-data')  
+						{  
+							 alert("Invalid Email Or Password!");  
+						}  
+						else 
+						{  
+							 $('#loginModal').hide();  
+							 location.reload();  
+						}  
+				   }  
+			  });  
+		 }  
+		 else 
+		 {  
+			  alert("Both Fields are required");  
+		 }  
+	});    
+});  
