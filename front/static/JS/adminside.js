@@ -3,7 +3,10 @@ function createPoll(){
 	options = []
 	let markedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 	if( markedCheckboxes.length == 0){ 
+		alert("ingen bokser er checked")
 		console.log("ingen bokser er checked")
+		$('#myModal').hide()
+		location.reload() 
 		return
 	}
 	
@@ -17,6 +20,8 @@ function createPoll(){
 	
 	//poster poll objectet til backend
 	postSetPoll(poll)
+	$('#myModal').hide()
+	location.reload()  
 	return
 }
 
