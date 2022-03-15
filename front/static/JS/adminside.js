@@ -14,6 +14,9 @@ $(document).ready(function(){
 			}
 			formaterTitler()
 			$("#myModal").modal();
+			if($("#myModal").hide()){
+				options = []
+			}
 		}
 	});
 });
