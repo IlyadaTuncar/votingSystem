@@ -31,124 +31,42 @@
 		</nav>
 		<div class="container main-body-container">
 			<div class="col-xs-12">
+				<!--Tester ut formatering av videoer--> 
 				<div class="content-block row">
 					<div class="text-center content content-block-title col-xs-12">
 						<span>Mest populære</span>
 					</div>
 				</div>
-				<div id="rad" class="content-block row">
-					<div class="container">
-						<div class="row">
-							<div class="col-sm">
-								<div>
-									<input type="checkbox" id="option1" name="option1" data-title="Mål av Alexander Toft-Haugesund" data-vidlink="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8">
-									<label for="option1">Velg denne videoen</label>
-								</div>
-								<video 
-									id="my-video"
-									class="video-js vjs-big-play-centered"
-									controls
-									preload="auto"
-									width="320"
-									height="180"
-									poster="https://d22hh18o76pkhl.cloudfront.net/mediabank/thumb/eliteserien/2966/05409.jpg"
-									data-setup="{}"
-									>
-									<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8" 
-									type="application/x-mpegURL" />
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-										<a href="https://videojs.com/html5-video-support/" target="_blank"
-										>supports HTML5 video</a>
-									</p>
-								</video>
-								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-							</div>
-							<div class="col-sm">
-								<div>
-									<input type="checkbox" id="option2" name="option2" data-title="Tester tittel1" data-vidlink="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8">
-									<label for="option2">Velg denne videoen</label>
-								</div>
-								<video 
-									id="my-video"
-									class="video-js vjs-big-play-centered"
-									controls
-									preload="auto"
-									width="640"
-									height="264"
-									poster="https://d22hh18o76pkhl.cloudfront.net/mediabank/thumb/eliteserien/2966/05409.jpg"
-									data-setup="{}"
-									>
-									<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8" 
-									type="application/x-mpegURL" />
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-										<a href="https://videojs.com/html5-video-support/" target="_blank"
-										>supports HTML5 video</a>
-									</p>
-								</video>
-								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-							</div>
-							<div class="col-sm">
-								<div>
-									<input type="checkbox" id="option3" name="option3" data-title="Tester tittel2" data-vidlink="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8">
-									<label for="option3">Velg denne videoen</label>
-								</div>
-								<video 
-									id="my-video"
-									class="video-js vjs-big-play-centered"
-									controls
-									preload="auto"
-									width="640"
-									height="264"
-									poster="https://d22hh18o76pkhl.cloudfront.net/mediabank/thumb/eliteserien/2966/05409.jpg"
-									data-setup="{}"
-									>
-									<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8" 
-									type="application/x-mpegURL" />
-									<p class="vjs-no-js">
-										To view this video please enable JavaScript, and consider upgrading to a
-										web browser that
-										<a href="https://videojs.com/html5-video-support/" target="_blank"
-										>supports HTML5 video</a>
-									</p>
-								</video>
-								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-							</div>
-						</div>
-					</div>
-				</div>
+				<div id="nyesteVideoer"></div>
+				<!--Tester ut formatering av videoer--> 
 				<div class="content-block row">
 					<div class="text-center content content-block-title col-xs-12">
 						<button id="avstemning_button" class="button button--full" type="submit">Opprett avstemning</button>
 					</div>
 				</div>
-
-				<!-- Modal content--> 
-				<div id="myModal" class="modal fade">  
-					<div class="modal-dialog">  
-						 <div class="modal-content">  
-							  <div class="modal-header">  
-								   <button type="button" class="close" data-dismiss="modal">X</button>  
-								   <h2 class="modal-title">Fyll inn poll-tittel og beskrivelse</h2>  
-							  </div>  
-							  <div class="modal-body">  
-								   <label>Poll-tittel</label>  
-								   <input type="text" name="tittel" id="tittel" class="form-control" />  
-								   <br />
-								   <label>Valgte videoer</label> 
-								   <div id="valgteVideoer" class="list-group"></div>
-								   <label>Beskrivelse</label>    
-								   <textarea class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
-								   <br />  
-								   <button type="button" name="opprett_button" onclick="createPoll()" id="opprett_button" class="btn btn-primary">Opprett poll</button> 
-							  </div>  
-						 </div>  
-					</div>  
-			   </div>  
 			</div>
+			<!-- Modal content--> 
+			<div id="myModal" class="modal fade">  
+				<div class="modal-dialog">  
+					 <div class="modal-content">  
+						  <div class="modal-header">  
+							   <button type="button" class="close" data-dismiss="modal">X</button>  
+							   <h2 class="modal-title">Fyll inn poll-tittel og beskrivelse</h2>  
+						  </div>  
+						  <div class="modal-body">  
+							   <label>Poll-tittel</label>  
+							   <input type="text" name="tittel" id="tittel" class="form-control" />  
+							   <br />
+							   <label>Valgte videoer</label> 
+							   <div id="valgteVideoer" class="list-group"></div>
+							   <label>Beskrivelse</label>    
+							   <textarea class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
+							   <br />  
+							   <button type="button" name="opprett_button" onclick="createPoll()" id="opprett_button" class="btn btn-primary">Opprett poll</button> 
+						  </div>  
+					 </div>  
+				</div>  
+		   </div>  
 		</div>
 	</body>
 </html>
