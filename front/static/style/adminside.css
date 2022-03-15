@@ -31,6 +31,14 @@
 	width: 50%;
 	text-align: center;
 }
+#optionNavn{
+	margin-top: 0;
+}
+#optionLabel{
+	margin-left: 1%;
+	font-size: 11px;
+}
+
 #avstemning_button{
 	font-size: 15px!important;
 	text-transform: uppercase;

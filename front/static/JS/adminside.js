@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	getapi();
 	$("#avstemning_button").click(function(){
 		let markedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 		if( markedCheckboxes.length == 0){ 
@@ -39,8 +40,6 @@ function createOption(title, link){
 			"video_url" : link}
 }
 
-//Denne må endres slik at mål tittelen blir hentet fra options array.
-//Nå er det hardkodet at den kjører 3 ganger og skriver "mål 1" som tittel
 function formaterTitler(){
 	let table = 
 		"<div class='list-group'>"
@@ -69,4 +68,37 @@ function postSetPoll(poll){
 			//console.log('Success')
 		}
 	})
+}
+
+//Her prøver jeg å hente videoer fra api og formatere videoene
+const api_url = "https://api.forzasys.com/eliteserien/playlist/?filters=%5B%22official%22%5D&tags=%5B%7B%22action%22:%22goal%22%7D%5D&orderby=date&count=6&from=0"
+
+async function getapi() {
+    const response = await fetch(api_url);
+    const data = await response.json();
+
+	let table = 
+		"<div class='content-block row'>" +
+		"<div class='container'>" +
+		"<div class='row'>"
+		for(a of data.playlists){
+			table+=
+			"<div class='col-sm'>"+
+			"<input type='checkbox' id='option1' name='option1' data-title='"+a.description+"' data-vidlink='"+a.video_url+"'></input>" +
+			"<label id='optionLabel' for='option1'>Velg</label>" +
+			"<h6 id='optionNavn'>"+a.description+"</h6>"+
+			"<video id='my-video' class='video-js vjs-big-play-centered' controls preload='auto' width='320' height='180' poster='"+a.thumbnail_url+"' data-setup='{}'>"+
+			"<source src='"+a.video_url+"' type='application/x-mpegURL' />"+
+			"<p class='vjs-no-js'> To view this video please enable JavaScript, and consider upgrading to a web browser that" + 
+			"<a href='https://videojs.com/html5-video-support/' target='_blank'>supports HTML5 video</a>" +
+			"</p>" + 
+			"</video>" + 
+			"<script src='https://vjs.zencdn.net/7.17.0/video.min.js'></script>" + 
+			"</div>"
+		}
+		table+= "</div>" +
+		"</div>"+
+		"</div>"
+
+		$("#nyesteVideoer").html(table)
 }
