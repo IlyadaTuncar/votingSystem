@@ -6,27 +6,24 @@ $(document).ready(function(){
 			return
 		}
 		else{
-			$("#myModal").modal();
+			let markedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+			for(cb of markedCheckboxes){
+				//per nå legger vi bare til video linken, men senere skal vi legge til et helt option object
+				//et option object inkluderer tittel på mål, tekst beskrivelse, og video link
+				options.push(createOption(cb.dataset.title, cb.dataset.vidlink))
+			}
 			formaterTitler()
+			$("#myModal").modal();
 		}
 	});
 });
 
 options = []
 function createPoll(){
-	let markedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
-	for(cb of markedCheckboxes){
-		//per nå legger vi bare til video linken, men senere skal vi legge til et helt option object
-		//et option object inkluderer tittel på mål, tekst beskrivelse, og video link
-		options.push(createOption(cb.dataset.title, cb.dataset.vidlink))
-	}
-	console.log(options)
 	//oppretter et poll object
 	let poll = {"options" : options, "title": "this is a poll"}
-	
 	//poster poll objectet til backend
 	postSetPoll(poll)
-	getTitles()
 	$('#myModal').hide()
 	location.reload()  
 	return
@@ -39,25 +36,16 @@ function createOption(title, link){
 			"video_url" : link}
 }
 
-//Denne metoden printer ut og returnerer kun tittelen på options. skal bli brukt til å liste ut videoene i modalen.
-function getTitles(){
-	for(a of options){
-		console.log(a.title)
-		return a.title
-	}
-}
-
 //Denne må endres slik at mål tittelen blir hentet fra options array.
 //Nå er det hardkodet at den kjører 3 ganger og skriver "mål 1" som tittel
 function formaterTitler(){
-	let hei = "HEIHEI"
 	let table = 
 		"<div class='list-group'>"
-	for(var i = 0; i < 3; i++){
+	for(a of options){
 		table+=
 		"<a href='#' class='list-group-item list-group-item-action flex-column align-items-start'>" +
 		"<div class='d-flex w-100 justify-content-between'>" + 
-		"<h5 class='mb-1'>Mål1</h5>" + 
+		"<h5 class='mb-1'>"+a.title+"</h5>" + 
 		"</div>"
 		"</a>"
 	}
