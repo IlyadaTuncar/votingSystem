@@ -7,6 +7,7 @@ $(document).ready(function(){
 			return
 		}
 		else{
+			options = []
 			let markedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 			for(cb of markedCheckboxes){
 				//per nå legger vi bare til video linken, men senere skal vi legge til et helt option object
@@ -15,20 +16,19 @@ $(document).ready(function(){
 			}
 			formaterTitler()
 			$("#myModal").modal();
-			if($("#myModal").hide()){
-				options = []
-			}
 		}
 	});
 });
 
 options = []
 function createPoll(){
+	const pollTittel = document.getElementById("pollTittel").value;
+	const pollBeskrivelse = document.getElementById("pollBeskrivelse").value;
 	//oppretter et poll object
-	let poll = {"options" : options, "title": "this is a poll"}
+	let poll = {"title": pollTittel, "poll_description": pollBeskrivelse, "options" : options}
 	//poster poll objectet til backend
 	postSetPoll(poll)
-	$('#myModal').hide()
+	//$('#myModal').hide()
 	location.reload()  
 	return
 }

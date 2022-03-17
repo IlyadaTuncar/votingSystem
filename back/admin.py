@@ -1,4 +1,5 @@
 #!flask/bin/python
+from asyncore import poll
 import sys
 import requests
 from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
@@ -10,40 +11,18 @@ app = Flask(__name__,
             static_folder='../front/static',)
 
 polls = []
-for x in range(3):
-
-	options = [
-		{
-		"video_url":"https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5001000:5036000/Manifest.m3u8",
-		"video_text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-			},
-		{
-		"video_url":"https://api.forzasys.com/eliteserien/playlist.m3u8/2966:5399000:5434000/Manifest.m3u8"
-			},
-		{
-		"video_url":"https://api.forzasys.com/eliteserien/playlist.m3u8/2962:6340000:6375000/Manifest.m3u8"
-		}
-		]
-
-	polls.append({
-  		"poll_id": x,
-  		"poll_description": "This is a poll",
- 		"options": options
-		})
 
 @app.route('/get_options', methods = ['GET'])
 def get_options():
-    # serve index template
-	#testing
-	data = polls[1]
+	data = polls
 	return jsonify(data)
 
 
 @app.route('/create_poll', methods = ['POST'])
 def create_poll():
 	request_data = request.json
-	print(request_data)
-	return "Her er req data:"
+	polls.append(request_data)
+	return ""
 
 
 @app.route('/', methods = ['GET','POST'])
