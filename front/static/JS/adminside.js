@@ -7,6 +7,7 @@ $(document).ready(function(){
 			return
 		}
 		else{
+			options = []
 			let markedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 			for(cb of markedCheckboxes){
 				//per nå legger vi bare til video linken, men senere skal vi legge til et helt option object
@@ -15,9 +16,6 @@ $(document).ready(function(){
 			}
 			formaterTitler()
 			$("#myModal").modal();
-			if($("#myModal").hide()){
-				options = []
-			}
 		}
 	});
 });
