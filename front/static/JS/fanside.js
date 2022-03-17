@@ -8,6 +8,9 @@ function updateVideoist(newList){
 	videoList = newList
 }
 
+// må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
+
+
 function openVideo(event, videoNr){
 	var videoElm = videojs("videoPlayer");
     //console.log(videoNr)
@@ -32,12 +35,12 @@ function openVideo(event, videoNr){
 function getOptions(){
 	$.get('/get_options', function ( data ){	
 		newVideos = []
-		for(o of data.options){
-			newVideos.push(o.video_url)
+		for(a of data){
+			for(b of a.options){
+				newVideos.push(b.video_url)
+			}
 		}
 		updateVideoist(newVideos);
-		console.log("NEW VIDEOES")
-		console.log(newVideos)
 	});
 }
 

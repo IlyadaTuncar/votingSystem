@@ -22,11 +22,13 @@ $(document).ready(function(){
 
 options = []
 function createPoll(){
+	const pollTittel = document.getElementById("pollTittel").value;
+	const pollBeskrivelse = document.getElementById("pollBeskrivelse").value;
 	//oppretter et poll object
-	let poll = {"options" : options, "title": "this is a poll"}
+	let poll = {"title": pollTittel, "poll_description": pollBeskrivelse, "options" : options}
 	//poster poll objectet til backend
 	postSetPoll(poll)
-	$('#myModal').hide()
+	//$('#myModal').hide()
 	location.reload()  
 	return
 }
