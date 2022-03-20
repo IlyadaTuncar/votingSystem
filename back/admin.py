@@ -12,11 +12,20 @@ app = Flask(__name__,
 
 polls = []
 
-@app.route('/get_options', methods = ['GET'])
+@app.route('/get_polls', methods = ['GET'])
 def get_options():
 	data = polls
+	print(polls)
 	return jsonify(data)
 
+@app.route('/get_poll/<id>', methods = ['GET'])
+def get_poll(id):
+	try:
+		indeks = int(id)
+		data = polls[indeks]
+		return jsonify(data)
+	except:
+		return "Poll not found"
 
 @app.route('/create_poll', methods = ['POST'])
 def create_poll():
@@ -40,11 +49,6 @@ def serve_admin():
 def serve_fan():
     return render_template('fanside.html')
 
-
-'''@app.route('/favicon.ico') 
-def favicon(): 
-    return send_from_directory(os.path.join(app.root_path, 'static'), 'favicon.ico', mimetype='image/vnd.microsoft.icon')
-'''
 
 @app.route('/static/JS/<path:path>')
 def send_js(path):
