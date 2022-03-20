@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	getOptions()
+	getPolls()
 })
 
 // må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
@@ -25,9 +25,16 @@ function formaterOptions(options){
 	$(".videoTab").html(table)
 }
 
-function getOptions(){
-	$.get('/get_options', function ( data ){
+function getPolls(){
+	$.get('/get_polls', function ( data ){
+		console.log(data)
 		formaterOptions(data[0].options)
 	});
 }
 
+function getPoll(id){
+	url = '/get_poll/'+id
+	$.get(url, function ( data ){
+		formaterOptions(data.options)
+	});
+}
