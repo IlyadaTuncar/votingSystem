@@ -8,7 +8,12 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../style/fanside.css">
+		<link rel="stylesheet" type="text/css" href="../static/style/fanside.css"/>
+
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 		<link rel="shortcut icon" href="#">
 		<link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
 		<title>Bachelor</title>
@@ -26,6 +31,11 @@
 		<div class="container main-body-container">
 			<div id="videoBoks" class="col-xs-12">
 				<div class="content-block row">
+					<div class="text-center content content-block-title col-xs-12">
+						<span id="overskriftFan">Stem på måneds mål!</span>
+					</div>
+				</div>
+				<div class="content-block row">
 					<div class="goal-showcase">
 						<video
 							id="videoPlayer"
@@ -41,15 +51,35 @@
 					</div> 
 					<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
 				</div>
-			</div>
-			<div id="listeBoks" class="col-xs-12">
-				<div class="content-block row">
-					<div class="videoTab">
-						
+
+				<div class ="content-block row">
+					<div class="text-center content content-block-title col-xs-12">
+						<button id="stem_button" class="button button--full" type="submit">Stem her</button>
 					</div>
 				</div>
 			</div>
-			<button class="btn btn-primary" onclick="validerStemKnapp()">Stem</button>
+
+			<div id="myModal" class="modal fade">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">X</button>
+							<h2 class="modal-title">Fyll inn informasjon</h2>
+						</div>
+						<div class="modal-body">
+							<label>Navn</label>
+							<input id="navn" type="text" name="navn" id="navn" class="form-control" />
+							<br />
+							<label>epost</label>
+							<input id="epost" type="email" name="epost" id="epost" class="form-control" />
+							<label>Beskrivelse</label>
+							<textarea id="pollBeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
+							<br />
+							<button type="button" name="stem_button" onclick="createVote()" id="avstem_button" class="btn btn-primary">STEM</button>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
     </body>
 </html>
