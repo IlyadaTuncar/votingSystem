@@ -3,17 +3,15 @@
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<link rel="stylesheet" type="text/css" href="../style/adminside.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="../style/adminside.css">
-
 
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		
-
 		<link rel="shortcut icon" href="#">
 		<link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
 		<script src="/JS/adminside.js"></script>
@@ -22,7 +20,7 @@
 	<body>
 		<nav class="navbar navbar-custom">
 			<div class="container-fluid">
-				<div class="navbar-header">
+				<div id="logo" class="navbar-header">
 					<a class="navbar-brand" href="/">
 						<img class="bilde" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Eliteserien logo" style="width:150px; height:50px;">
 					</a>
@@ -34,7 +32,7 @@
 				<!--Tester ut formatering av videoer--> 
 				<div class="content-block row">
 					<div class="text-center content content-block-title col-xs-12">
-						<span>Mest populære</span>
+						<span id="overskriftAdmin">Opprett en avstemning</span>
 					</div>
 				</div>
 				<div id="nyesteVideoer"></div>
