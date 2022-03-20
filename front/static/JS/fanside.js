@@ -2,12 +2,6 @@ $(document).ready(function() {
 	getOptions()
 })
 
-let videoList = []
-
-function updateVideoist(newList){
-	videoList = newList
-}
-
 // må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
 
 
@@ -32,7 +26,7 @@ function formaterOptions(options){
 }
 
 function getOptions(){
-	$.get('/get_options', function ( data ){	
+	$.get('/get_options', function ( data ){
 		formaterOptions(data[0].options)
 	});
 }
