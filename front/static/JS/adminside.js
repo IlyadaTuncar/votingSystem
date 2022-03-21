@@ -80,6 +80,9 @@ function postSetPoll(poll) {
 const api_url = "https://api.forzasys.com/eliteserien/playlist/?filters=%5B%22official%22%5D&tags=%5B%7B%22action%22:%22goal%22%7D%5D&orderby=date&count=6&from=0"
 
 async function getapi() {
+    const response = await fetch(api_url);
+    const data = await response.json();
+
     let table =
         "<div class='content-block row'>" +
         "<div class='container'>" +
@@ -110,6 +113,8 @@ async function getapi() {
 
     $("#nyesteVideoer").html(table)
 }
+
+
 
 /*
 //Denne funksjonen har blitt brukt til å vise datane fra api'et til forzasys
