@@ -57,6 +57,10 @@ def serve_fan():
     return render_template('fanside.html')
 
 
+@app.route('/opprettetPoll', methods = ['GET', 'POST'])
+def serve_opprettet_poll():
+    return render_template('opprettetPoll.html')
+
 @app.route('/static/JS/<path:path>')
 def send_js(path):
     return send_from_directory('JS', path)

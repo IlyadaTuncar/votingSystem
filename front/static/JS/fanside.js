@@ -52,7 +52,6 @@ function formaterOptions(options) {
 
 function getPolls() {
     $.get('/get_polls', function(data) {
-        console.log(data)
         formaterOptions(data[0].options)
         hentPollTittel(data[0].title)
         hentPollBeskrivelse(data[0].poll_description)
