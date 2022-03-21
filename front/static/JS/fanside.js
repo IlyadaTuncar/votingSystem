@@ -1,40 +1,57 @@
 $(document).ready(function() {
-	getPolls()
+    getPolls()
 })
 
 // må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
 
 
-function openVideo(event, video_url){
-	var videoElm = videojs("videoPlayer");
-	
-	if(!videoElm.paused()){
-		videoElm.pause()
-	}
-	videoElm.src(video_url)
-	videoElm.play()
-	
+function openVideo(event, video_url) {
+    var videoElm = videojs("videoPlayer");
+
+    if (!videoElm.paused()) {
+        videoElm.pause()
+    }
+    videoElm.src(video_url)
+    videoElm.play()
+
 }
 
-function formaterOptions(options){
-	let table = '<div class="button-container">' 
-	for(o of options){
-		table += '<button class="tablinks" onclick="openVideo(event, '+"'"+o.video_url+"'"+')">'+o.title+'</button>'
-	}
-	table += '</div>'
-	$(".videoTab").html(table)
+
+
+
+
+function hentPollTittel(title) {
+    let table = '<div class="container">'
+
+    table += '<h1>' + title + '</h1>'
+
+    table += '</div>'
+    $(".pollTitle").html(table)
+
+
 }
 
-function getPolls(){
-	$.get('/get_polls', function ( data ){
-		console.log(data)
-		formaterOptions(data[0].options)
-	});
+function formaterOptions(options) {
+    let table = '<div class="button-container">'
+    for (o of options) {
+        table += '<button class="tablinks" onclick="openVideo(event, ' + "'" + o.video_url + "'" + ')">' + o.title + '</button>'
+    }
+    table += '</div>'
+    $(".videoTab").html(table)
 }
 
-function getPoll(id){
-	url = '/get_poll/'+id
-	$.get(url, function ( data ){
-		formaterOptions(data.options)
-	});
+
+function getPolls() {
+    $.get('/get_polls', function(data) {
+        console.log(data)
+        formaterOptions(data[0].options)
+        hentPollTittel(data[0].title)
+    });
+}
+
+function getPoll(id) {
+    url = '/get_poll/' + id
+    $.get(url, function(data) {
+        formaterOptions(data.options)
+    });
 }
