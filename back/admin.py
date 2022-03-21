@@ -30,7 +30,7 @@ def get_poll(id):
 def create_poll():
 	request_data = request.json
 	polls.append(request_data)
-	return
+	return ""
 
 
 @app.route('/', methods = ['GET','POST'])
