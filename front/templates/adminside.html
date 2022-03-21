@@ -1,70 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<link rel="stylesheet" type="text/css" href="../style/adminside.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		
-		<link rel="shortcut icon" href="#">
-		<link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
-		<script src="/JS/adminside.js"></script>
-		<title>Bachelor</title>
-	</head>
-	<body>
-		<nav class="navbar navbar-custom">
-			<div class="container-fluid">
-				<div id="logo" class="navbar-header">
-					<a class="navbar-brand" href="/">
-						<img class="bilde" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Eliteserien logo" style="width:150px; height:50px;">
-					</a>
-				</div>
-			</div>
-		</nav>
-		<div class="container main-body-container">
-			<div class="col-xs-12">
-				<!--Tester ut formatering av videoer--> 
-				<div class="content-block row">
-					<div class="text-center content content-block-title col-xs-12">
-						<span id="overskriftAdmin">Opprett en avstemning</span>
-					</div>
-				</div>
-				<div id="nyesteVideoer"></div>
-				<!--Tester ut formatering av videoer--> 
-				<div class="content-block row">
-					<div class="text-center content content-block-title col-xs-12">
-						<button id="avstemning_button" class="button button--full" type="submit">Opprett avstemning</button>
-					</div>
-				</div>
-			</div>
-			<!-- Modal content--> 
-			<div id="myModal" class="modal fade">  
-				<div class="modal-dialog">  
-					 <div class="modal-content">  
-						  <div class="modal-header">  
-							   <button type="button" class="close" data-dismiss="modal">X</button>  
-							   <h2 class="modal-title">Fyll inn poll-tittel og beskrivelse</h2>  
-						  </div>  
-						  <div class="modal-body">  
-							   <label>Poll-tittel</label>  
-							   <input id="pollTittel" type="text" name="tittel" id="tittel" class="form-control" />  
-							   <br />
-							   <label>Valgte videoer</label> 
-							   <div id="valgteVideoer" class="list-group"></div>
-							   <label>Beskrivelse</label>    
-							   <textarea id="pollBeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
-							   <br />  
-							   <button type="button" name="opprett_button" onclick="createPoll()" id="opprett_button" class="btn btn-primary">Opprett poll</button> 
-						  </div>  
-					 </div>  
-				</div>  
-		   </div>  
-		</div>
-	</body>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="../style/adminside.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link rel="shortcut icon" href="#">
+    <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+    <script src="/JS/adminside.js"></script>
+    <title>Bachelor</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <div id="logo" class="navbar-header">
+                <a class="navbar-brand" href="/">
+                    <img class="bilde" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Eliteserien logo" style="width:150px; height:50px;">
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container main-body-container">
+        <div class="col-xs-12">
+            <!--Tester ut formatering av videoer-->
+            <div class="content-block row">
+                <div class="text-center content content-block-title col-xs-12">
+                    <span id="overskriftAdmin">Opprett en avstemning</span>
+                </div>
+            </div>
+            <div id="nyesteVideoer"></div>
+            <!--Tester ut formatering av videoer-->
+            <div class="content-block row">
+                <div class="text-center content content-block-title col-xs-12">
+                    <button id="avstemning_button" class="button button--full" type="submit">Opprett avstemning</button>
+                </div>
+            </div>
+        </div>
+        <!-- Modal content-->
+        <div id="myModal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">X</button>
+                        <h2 class="modal-title">Fyll inn poll-tittel og beskrivelse</h2>
+                    </div>
+                    <div class="modal-body">
+                        <label>Poll-tittel</label>
+                        <input id="pollTittel" type="text" name="tittel" id="tittel" class="form-control" />
+                        <br />
+                        <label>Poll-Sluttdato</label>
+                        <input id="pollSluttDato" type="date" name="pollSluttDato" id="sluttdato" class="form-control" />
+                        <br />
+                        <label>Valgte videoer</label>
+                        <div id="valgteVideoer" class="list-group"></div>
+                        <label>Beskrivelse</label>
+                        <textarea id="pollBeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
+                        <br />
+                        <button type="button" name="opprett_button" onclick="createPoll()" id="opprett_button" class="btn btn-primary">Opprett poll</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>

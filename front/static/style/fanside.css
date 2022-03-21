@@ -70,6 +70,23 @@ body{
 	  display: block;
 }
 
+.tablinks{
+	padding: 0px;
+	height: 100px;
+}
+
+.tablinks img{
+	display: block;
+	height: 100%;
+	float: left;
+}
+
+.tablinks h4{
+	display: inline-block;
+	max-height: 80%;
+	width: 40%;
+}
+
 .main-body-container{
 	position: center;
 }
@@ -86,15 +103,6 @@ body{
 	font-family: Arial, Helvetica, sans-serif;
 	font-style: normal;
 	font-weight: 700;
-}
-
-.col-xs-12 {
-	width: 100%;
-	float: left;
-	position: relative;
-	min-height: 1px;
-	padding-right: 15px;
-	padding-left: 15px;
 }
 
 .button--full{
