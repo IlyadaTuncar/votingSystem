@@ -1,5 +1,7 @@
 #!flask/bin/python
 from asyncore import poll
+from operator import truediv
+from pickle import TRUE
 import sys
 import requests
 from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
@@ -30,7 +32,13 @@ def get_poll(id):
 def create_poll():
 	request_data = request.json
 	polls.append(request_data)
-	return ""
+
+	#Etter vi har databasen kan vi sjekke om avstemmingen ble lagt til ordentlig
+	success = True
+	if(success):
+		return "Poll er opprettet"
+	else:
+		return "Kunne ikke opprette poll"
 
 
 @app.route('/', methods = ['GET','POST'])

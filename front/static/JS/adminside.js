@@ -1,5 +1,11 @@
 $(document).ready(function(){
 	getapi();
+
+	console.log(visSluttModal)
+	if (visSluttModal){
+		$('#sluttModal').modal('show')
+	}
+
 	$("#avstemning_button").click(function(){
 		let markedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
 		if( markedCheckboxes.length == 0){ 
@@ -20,16 +26,23 @@ $(document).ready(function(){
 	});
 });
 
-options = []
+//options = []
 function createPoll(){
 	const pollTittel = document.getElementById("pollTittel").value;
 	const pollBeskrivelse = document.getElementById("pollBeskrivelse").value;
 	//oppretter et poll object
 	let poll = {"title": pollTittel, "poll_description": pollBeskrivelse, "options" : options}
 	//poster poll objectet til backend
+	$('#myModal').hide()
 	postSetPoll(poll)
-	//$('#myModal').hide()
-	location.reload()  
+	$('#sluttModal').on('show.bs.modal', function (event) {
+			// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+			// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+			var modal = $(this)
+			modal.find('.modal-body h2').text("Opprettet poll")
+		})
+	location.reload();
+	visSluttModal=true;
 	return
 }
 
@@ -60,6 +73,7 @@ function formaterTitler(){
 
 
 function postSetPoll(poll){
+	let output=""
 	$.ajax({
 		url:'/create_poll',
 		method:"POST",
@@ -67,9 +81,19 @@ function postSetPoll(poll){
 		contentType:"application/json; charset=utf-8",
 		dataType:"json",
 		success: function(){
-			//console.log('Success')
+			output=data;
 		}
 	})
+	if(output=="Poll er opprettet"){
+		return true
+	} else{
+		return false
+	}
+	//console.log(output)
+	/*
+	
+	
+	*/
 }
 
 //Her prøver jeg å hente videoer fra api og formatere videoene
