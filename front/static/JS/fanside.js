@@ -43,7 +43,7 @@ function hentPollTittel(title) {
 function formaterOptions(options) {
     let table = '<div class="button-container">'
     for (o of options) {
-        table += '<button class="tablinks" onclick="openVideo(event, ' + "'" + o.video_url + "'" + ')">' + o.title + '</button>'
+        table += '<button class="tablinks" onclick="openVideo(event, ' + "'" + o.video_url + "'" + ')"><img src="'+o.thumbnail+'">'+'<h4>'+ o.title +'</h4></button>'
     }
     table += '</div>'
     $(".videoTab").html(table)
@@ -52,7 +52,6 @@ function formaterOptions(options) {
 
 function getPolls() {
     $.get('/get_polls', function(data) {
-        console.log(data)
         formaterOptions(data[0].options)
         hentPollTittel(data[0].title)
         hentPollBeskrivelse(data[0].poll_description)
