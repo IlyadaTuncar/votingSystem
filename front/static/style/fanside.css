@@ -18,7 +18,7 @@ body{
 }
 #videoBoks {
 	width: 55%;
-	float: left;
+	float: none;
 	position: relative;
 	min-height: 1px;
 }
@@ -81,7 +81,7 @@ body{
 }
   
 .goal-showcase{
-	  float: inherit;	
+	  float: left;
 	  margin: 30px;
 	  width: 100%;
 	  display: block;
@@ -127,6 +127,3 @@ body{
 	text-align: center;
 }
 
-#overskriftFan{
-	font-size: 25px;
-}
