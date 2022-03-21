@@ -43,7 +43,7 @@ function hentPollTittel(title) {
 function formaterOptions(options) {
     let table = '<div class="button-container">'
     for (o of options) {
-        table += '<button class="tablinks" onclick="openVideo(event, ' + "'" + o.video_url + "'" + ')"><img src="'+o.thumbnail+'">'+'<h4>'+ o.title +'</h4></button>'
+        table += '<button class="tablinks" onclick="openVideo(event, ' + "'" + o.video_url + "'" + ')"><img id="tumbnail" src="'+o.thumbnail+'">'+'<h4 id="buttonTitles">Mål '+ o.scorerlag +'!&nbspScoring av&nbsp' + o.scorer + '&nbspmot&nbsp' + o.motstander + '.</h4></button>'
     }
     table += '</div>'
     $(".videoTab").html(table)

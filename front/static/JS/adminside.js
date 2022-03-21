@@ -11,7 +11,7 @@ $(document).ready(function() {
             for (cb of markedCheckboxes) {
                 //per nå legger vi bare til video linken, men senere skal vi legge til et helt option object
                 //et option object inkluderer tittel på mål, tekst beskrivelse, og video link
-                options.push(createOption(cb.dataset.title, cb.dataset.vidlink, cb.dataset.dato, cb.dataset.motstander, cb.dataset.thumbnail))
+                options.push(createOption(cb.dataset.title, cb.dataset.vidlink, cb.dataset.dato, cb.dataset.scorer, cb.dataset.scorerlag, cb.dataset.motstander, cb.dataset.thumbnail))
             }
             formaterTitler()
             $("#myModal").modal();
@@ -36,11 +36,13 @@ function createPoll() {
 
 //Denne metoden skal senere ta inn tittel og text i tillegg
 //Returnerer et json object
-function createOption(title, link, dato, motstander, thumbnail) {
+function createOption(title, link, dato, scorer, scorerlag, motstander, thumbnail) {
     return {
         "title": title,
         "video_url": link,
         "dato": dato,
+		"scorer":scorer,
+		"scorerlag":scorerlag,
         "motstander": motstander,
         "thumbnail": thumbnail
     }
@@ -53,7 +55,7 @@ function formaterTitler() {
         table +=
             "<li class='list-group-item flex-column align-items-start'>" +
             "<div class='d-flex w-100 justify-content-between'>" +
-            "<h5 class='mb-1'>" + a.title + "</h5>" +
+            "<h5 class='mb-1'>Scoring av&nbsp" + a.scorer + "&nbspmot&nbsp" + a.motstander + "</h5>" +
             "</div>"
         "</li>"
     }
@@ -92,7 +94,7 @@ async function getapi() {
             for (c of b.tags) {
                 table +=
                     "<div class='col-sm'>" +
-                    "<input type='checkbox' id='option1' name='option1' data-dato='" + a.game.date + "' data-motstander='" + a.game.visiting_team.name + "' data-title='" + a.description + "' data-vidlink='" + a.video_url + "' data-thumbnail='" + a.thumbnail_url + "'></input>" +
+                    "<input type='checkbox' id='option1' name='option1' data-scorerlag='"+c.team.value+"' data-scorer='" + c.scorer.value + "' data-dato='" + a.game.date + "' data-motstander='" + a.game.visiting_team.name + "' data-title='" + a.description + "' data-vidlink='" + a.video_url + "' data-thumbnail='" + a.thumbnail_url + "'></input>" +
                     "<label id='optionLabel' for='option1'>Velg</label>" +
                     "<video id='my-video' class='video-js vjs-big-play-centered' controls preload='auto' width='320' height='180' poster='" + a.thumbnail_url + "' data-setup='{}'>" +
                     "<source src='" + a.video_url + "' type='application/x-mpegURL' />" +
