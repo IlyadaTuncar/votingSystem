@@ -8,18 +8,21 @@
 body{
 	background-color: #f5f6fa;
 }
+
+.row{
+	margin-bottom: 10px;
+	margin-left: auto;
+}
+.col-sm{
+	margin-bottom: 10px;
+}
 #videoBoks {
 	width: 55%;
 	float: left;
 	position: relative;
 	min-height: 1px;
 }
-#listeBoks{
-	width: 35%;
-	float: right;
-	position: relative;
-	min-height: 1px;
-}
+
 .main-body-container{
 	height: 40%;
 }
@@ -65,4 +68,40 @@ body{
 	  margin: 30px;
 	  width: 100%;
 	  display: block;
+}
+
+.main-body-container{
+	position: center;
+}
+
+#stem_button{
+	font-size: 15px!important;
+	text-transform: uppercase;
+	display: inline-block;
+	background-color: #10253e;
+	color: #FFF;
+	border: .25rem solid #10253e;
+	border-bottom: 0;
+	box-shadow: 0 .25rem 0 #00AEEA;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: normal;
+	font-weight: 700;
+}
+
+.col-xs-12 {
+	width: 100%;
+	float: left;
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+.button--full{
+	width: 50%;
+	text-align: center;
+}
+
+#overskriftFan{
+	font-size: 25px;
 }

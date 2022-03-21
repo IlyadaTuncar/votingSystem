@@ -1,53 +1,101 @@
 <!doctype html>
 <html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="/JS/fanside.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="../style/fanside.css">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="/JS/fanside.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="../style/fanside.css">
-    <link rel="shortcut icon" href="#">
-    <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
-    <title>Bachelor</title>
-</head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<body>
-    <nav class="navbar navbar-custom">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a class="navbar-brand" href="/">
-                    <img class="bilde" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Eliteserien logo" style="width:150px; height:50px;">
-                </a>
-            </div>
-        </div>
-    </nav>
-    <div class="pollTitle">
-
-    </div>
-    <div class="container main-body-container">
-        <div id="videoBoks" class="col-xs-12">
-            <div class="content-block row">
-                <div class="goal-showcase">
-                    <video id="videoPlayer" class="video-js vjs-big-play-centered" controls preload="auto" width="465" height="262" data-setup="{}">
+		<link rel="shortcut icon" href="#">
+		<link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
+		<title>Bachelor</title>
+	</head>
+	<body>
+		<nav class="navbar navbar-custom">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="/">
+						<img class="bilde" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Eliteserien logo" style="width:150px; height:50px;">
+					</a>
+				</div>
+			</div>
+		</nav>
+		<div class="container main-body-container">
+			<div id="videoBoks" class="col-xs-12">
+				<div class="content-block row">
+					<div class="text-center content content-block-title col-xs-12">
+						<span id="overskriftFan">Stem på måneds mål!</span>
+					</div>
+				</div>
+				<div class="content-block row">
+					<div class="goal-showcase">
+						<video
+							id="videoPlayer"
+							class="video-js vjs-big-play-centered"
+							controls
+							preload="auto"
+							width="465"
+							height="262"
+							data-setup="{}"
+								>
 							<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2962:5767000:5802000/Manifest.m3u8" type="application/x-mpegURL" />
 						</video>
-                </div>
-                <script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-            </div>
-        </div>
-        <div id="listeBoks" class="col-xs-12">
-            <div class="content-block row">
-                <div class="videoTab">
+					</div>
+					<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+				</div>
 
-                </div>
-            </div>
-        </div>
-        <button class="btn btn-primary" onclick="validerStemKnapp()">Stem</button>
-    </div>
+				<div id="listeBoks" class="col-xs-12">
+					<div class="content-block row">
+						<div class="videoTab">
+
+						</div>
+					</div>
+				</div>
+				<div class="content-block row">
+					<!-- Trigger the modal with a button -->
+					<div class="text-center content content-block-title col-xs-12">
+					<button id="stem_button" class="button button--full" data-toggle="modal" data-target="#myModal" type="submit">Stem nu</button>
+				    </div>
+					<!-- Modal -->
+					<div class="modal fade" id="myModal" role="dialog">
+						<div class="modal-dialog">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal">&times;</button>
+									<h2 class="modal-title">Fyll inn informasjon</h2>
+								</div>
+								<div class="modal-body">
+									<label>Navn</label>
+									<input id="navn" type="text" name="navn" id="navn" class="form-control"/>
+									<br />
+									<label>Email</label>
+									<input id="email" type="email" name="email" id="email" class="form-control"/>
+									<label>Beskrivelse</label>
+									<textarea id="pollBeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
+									<br />
+								</div>
+								<div class="modal-footer">
+									<button type="button" name="opprettStem_button" onlick="createVote()" id="opprettStem_button" class="btn btn-primary">Stem</button>
+									<button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+		</div>
 </body>
 
 </html>
