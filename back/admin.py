@@ -1,7 +1,6 @@
 #!flask/bin/python
 from asyncore import poll
 import sys
-import requests
 from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
 import json
 
@@ -48,6 +47,9 @@ def serve_admin():
 def serve_fan():
     return render_template('fanside.html')
 
+@app.route('/avsluttetPoll', methods = ['GET', 'POST'])
+def serve_avsluttetPoll():
+    return render_template('avsluttetPoll.html')
 
 @app.route('/static/JS/<path:path>')
 def send_js(path):
