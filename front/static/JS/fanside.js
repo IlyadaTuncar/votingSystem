@@ -18,7 +18,16 @@ function openVideo(event, video_url) {
 
 
 
+function hentPollBeskrivelse(poll_description) {
+    let table = '<div class="container">'
 
+    table += '<h3>' + poll_description + '</h3>'
+
+    table += '</div>'
+    $(".pollBeskrivelse").html(table)
+
+
+}
 
 function hentPollTittel(title) {
     let table = '<div class="container">'
@@ -46,6 +55,7 @@ function getPolls() {
         console.log(data)
         formaterOptions(data[0].options)
         hentPollTittel(data[0].title)
+        hentPollBeskrivelse(data[0].poll_description)
     });
 }
 
