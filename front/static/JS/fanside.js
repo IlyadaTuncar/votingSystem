@@ -29,6 +29,20 @@ function hentPollBeskrivelse(poll_description) {
 
 }
 
+
+function sluttDatoFunksjon(pollSluttDato) {
+
+    var sluttDato = new Date(pollSluttDato);
+    var todayDate = new Date();
+
+    todayDate.setHours(0, 0, 0, 0);
+    sluttDato.setHours(0, 0, 0, 0);
+
+    if (sluttDato.getTime() < todayDate.getTime()) {
+        window.location.href = '/avsluttetPoll'
+    }
+}
+
 function hentPollTittel(title) {
     let table = '<div class="container">'
 
@@ -43,7 +57,7 @@ function hentPollTittel(title) {
 function formaterOptions(options) {
     let table = '<div class="button-container">'
     for (o of options) {
-        table += '<button class="tablinks" onclick="openVideo(event, ' + "'" + o.video_url + "'" + ')"><img id="tumbnail" src="'+o.thumbnail+'">'+'<h4 id="buttonTitles">Mål '+ o.scorerlag +'!&nbspScoring av&nbsp' + o.scorer + '&nbspmot&nbsp' + o.motstander + '.</h4></button>'
+        table += '<button class="tablinks" onclick="openVideo(event, ' + "'" + o.video_url + "'" + ')"><img id="tumbnail" src="' + o.thumbnail + '">' + '<h4 id="buttonTitles">Mål ' + o.scorerlag + '!&nbspScoring av&nbsp' + o.scorer + '&nbspmot&nbsp' + o.motstander + '.</h4></button>'
     }
     table += '</div>'
     $(".videoTab").html(table)
@@ -55,6 +69,10 @@ function getPolls() {
         formaterOptions(data[0].options)
         hentPollTittel(data[0].title)
         hentPollBeskrivelse(data[0].poll_description)
+        sluttDatoFunksjon(data[0].pollSluttDato)
+
+
+
     });
 }
 
