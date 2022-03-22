@@ -28,76 +28,70 @@
 				</div>
 			</div>
 		</nav>
-
-
 		<div class="container main-body-container">
-			<div id="videoBoks" class="col-xs-12">
+			<div class="col-xs-12">
 				<div class="content-block row">
 					<div class="text-center content content-block-title col-xs-12">
-						<div class="pollTitle"></div>
-                        <div class="pollBeskrivelse"></div>
+						<span class="pollTitle"></span>
+						<span class="pollBeskrivelse"></span>
 					</div>
 				</div>
 				<div class="content-block row">
-					<div class="goal-showcase">
-						<video
-							id="videoPlayer"
-							class="video-js vjs-big-play-centered"
-							controls
-							preload="auto"
-							width="465"
-							height="262"
-							data-setup="{}"
-								>
-							<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2962:5767000:5802000/Manifest.m3u8" type="application/x-mpegURL" />
-						</video>
-					</div>
-					<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-				</div>
-
-				<div id="listeBoks" class="col-xs-12">
-					<div class="content-block row">
-						<div class="videoTab">
-						</div>
-
-				</div>
-				<div class="content-block row">
-					<!-- Trigger the modal with a button -->
-					<div class="text-center content content-block-title col-xs-12">
-					<button id="stem_button" class="button button--full" data-toggle="modal" data-target="#myModal" type="submit">Stem nu</button>
-				    </div>
-					<!-- Modal -->
-					<div class="modal fade" id="myModal" role="dialog">
-						<div class="modal-dialog">
-
-							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal">&times;</button>
-									<h2 class="modal-title">Fyll inn informasjon</h2>
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<div class="goal-showcase">
+									<video
+										id="videoPlayer"
+										class="video-js vjs-big-play-centered"
+										controls
+										preload="auto"
+										width="465"
+										height="262"
+										data-setup="{}"
+											>
+										<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2962:5767000:5802000/Manifest.m3u8" type="application/x-mpegURL" />
+									</video>
 								</div>
-								<div class="modal-body">
-									<label>Navn</label>
-									<input id="navn" type="text" name="navn" id="navn" class="form-control"/>
-									<br />
-									<label>Email</label>
-									<input id="email" type="email" name="email" id="email" class="form-control"/>
-									<label>Beskrivelse</label>
-									<textarea id="pollBeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
-									<br />
+								<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
+								<div class="videoBeskrivelse"></div>
+								<div class="beskrivelse">
+									<button id="stem_button" class="button button--full" data-toggle="modal" data-target="#myModal" type="submit">STEM</button>
 								</div>
-								<div class="modal-footer">
-									<button type="button" name="opprettStem_button" onlick="createVote()" id="opprettStem_button" class="btn btn-primary">Stem</button>
-									<button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
-								</div>
+							</div>
+							<div class="col">
+								<div class="videoTab"></div>
 							</div>
 						</div>
 					</div>
-
 				</div>
 			</div>
+			<!-- Modal -->
+			<div class="modal fade" id="myModal" role="dialog">
+				<div class="modal-dialog">
 
-		</div>
-</body>
-
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h2 class="modal-title">Fyll inn informasjon</h2>
+						</div>
+						<div class="modal-body">
+							<label>Navn</label>
+							<input id="navn" type="text" name="navn" id="navn" class="form-control"/>
+							<br />
+							<label>Email</label>
+							<input id="email" type="email" name="email" id="email" class="form-control"/>
+							<label>Beskrivelse</label>
+							<textarea id="pollBeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
+							<br />
+						</div>
+						<div class="modal-footer">
+							<button type="button" name="opprettStem_button" onlick="createVote()" id="opprettStem_button" class="btn btn-primary">Stem</button>
+							<button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	</body>
 </html>
