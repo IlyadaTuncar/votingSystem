@@ -5,7 +5,7 @@ $(document).ready(function() {
 // må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
 
 
-function openVideo(event, video_url) {
+function openVideo(video_url) {
     var videoElm = videojs("videoPlayer");
 
     if (!videoElm.paused()) {
@@ -49,12 +49,18 @@ function hentPollBeskrivelse(poll_description) {
 function formaterOptions(options) {
     let table = '<div class="button-container">'
     for (o of options) {
-        table += '<button class="tablinks" onclick="openVideo(event, ' + "'" + o.video_url + "'" + ')">' +
-            '<img id="tumbnail" src="' + o.thumbnail + '">' + '<h4 id="buttonTitles">Mål ' + o.scorerlag +
-            '!&nbspScoring av&nbsp' + o.scorer + '&nbspmot&nbsp' + o.motstander + '.</h4></button>'
+        table += '<button class="tablinks" onclick="openVideo(' + "'" + o.video_url + "'" + ');formaterVideoBeskrivelse(' + "'" + o.scorerlag + "'" + "," + "'" + o.scorer + "'" + "," + "'" + o.motstander + "'" + "," + "'" + o.dato + "'" + ');"><img id="tumbnail" src="' + o.thumbnail + '">' + '<h4 id="buttonTitles">Mål ' + o.scorerlag + '!&nbspScoring av&nbsp' + o.scorer + '&nbspmot&nbsp' + o.motstander + '.</h4></button>'
     }
     table += '</div>'
     $(".videoTab").html(table)
+}
+
+function formaterVideoBeskrivelse(scorerlag, scorer, motstander, dato){
+	let table='<div class="beskrivelse">'
+		table += '<h4>Mål ' + scorerlag + '!&nbspScoring av&nbsp' + scorer+ '&nbspmot&nbsp' +motstander + '.</h4>'
+		table += '<h5>Dato: ' + dato + '</h5>'
+		table += '</div>'
+	$(".videoBeskrivelse").html(table)
 }
 
 
