@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="/JS/fanside.js"></script>
-		<<!-- CSS -->
+		<!-- CSS -->
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
 			  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 			  crossorigin="anonymous">
@@ -35,16 +35,10 @@
 			</div>
 		</nav>
 
-		<div class="content-block row" id="tittelBoks">
-			<div class="text-center content content-block-title">
-				<div class="col-xs-12">
-					<div class="pollTitle"></div>
-				</div>
-				<div class="col-xs-12">
-					<div class="pollBeskrivelse"></div>
-				</div>
-			</div>
-		</div>
+		<section class ="jumbotron text-center">
+			<div class="pollTitle"></div>
+			<div class="pollBeskrivelse"></div>
+		</section>
 
 		<div class="container main-body-container">
 			<div id="videoBoks" class="row">
@@ -58,9 +52,7 @@
 								width="465"
 								height="262"
 								data-setup="{}"
-						>
-							<source src="https://api.forzasys.com/eliteserien/playlist.m3u8/2962:5767000:5802000/Manifest.m3u8" type="application/x-mpegURL" />
-						</video>
+						> </video>
 					</div>
 					<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
 				</div>
@@ -69,14 +61,17 @@
 					<div class="content-block row">
 						<div class="videoTab">
 						</div>
-				    </div>
+					</div>
+				</div>
+
+
 				<div class="content-block row">
 					<!-- Trigger the modal with a button -->
 					<div class="text-center content content-block-title col-xs-12">
 					<button id="stem_button" class="button button--full" data-toggle="modal" data-target="#myModal" type="submit">Stem nu</button>
 				    </div>
 				</div>
-				</div>
+
 					<!-- Modal -->
 					<div class="modal fade" id="myModal" role="dialog">
 						<div class="modal-dialog">
@@ -106,6 +101,7 @@
 					</div>
 			</div>
 		</div>
+
 </body>
 
 </html>
