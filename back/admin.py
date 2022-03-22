@@ -25,11 +25,21 @@ def get_poll(id):
 	except:
 		return "Poll not found"
 
+@app.route('/opprettetPoll', methods = ['GET', 'POST'])
+def serve_opprettet_poll():
+    return render_template('opprettetPoll.html')
+
 @app.route('/create_poll', methods = ['POST'])
 def create_poll():
 	request_data = request.json
 	polls.append(request_data)
-	return ""
+
+	#Etter vi har databasen kan vi sjekke om avstemmingen ble lagt til ordentlig
+	success = True
+	if(success):
+		return "Poll er opprettet"
+	else:
+		return "Kunne ikke opprette poll"
 
 
 @app.route('/', methods = ['GET','POST'])
