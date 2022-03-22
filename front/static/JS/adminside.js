@@ -27,10 +27,16 @@ function createPoll() {
     const pollSluttDato = document.getElementById("pollSluttDato").value;
     //oppretter et poll object
     let poll = { "title": pollTittel, "poll_description": pollBeskrivelse, "pollSluttDato": pollSluttDato, "options": options }
-        //poster poll objectet til backend
-    postSetPoll(poll)
-        //$('#myModal').hide()
-    location.reload()
+    
+	//poster poll objectet til backend
+    //Ikke gjort enda. returner info om hvilken poll id den nye pollen har til nettsiden /opprettetPoll
+	if(postSetPoll(poll)){
+		$("#myModal").modal('hide');
+		$("#feilModal").modal();
+	} else{
+		window.location.href = '/opprettetPoll'
+	}
+	return
     return
 }
 
@@ -65,17 +71,25 @@ function formaterTitler() {
 }
 
 
-function postSetPoll(poll) {
-    $.ajax({
-        url: '/create_poll',
-        method: "POST",
-        data: JSON.stringify(poll),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function() {
-            //console.log('Success')
-        }
-    })
+function postSetPoll(poll){
+	let output=""
+	$.ajax({
+		url:'/create_poll',
+		method:"POST",
+		data:JSON.stringify(poll),
+		contentType:"application/json; charset=utf-8",
+		dataType:"json",
+		success: function(data){
+			output=data;
+		}
+	})
+	
+	//returner info om suksess eller feil ved oppretting av poll og send det til den nye nettsiden
+	if(output=="Poll er opprettet"){
+		return true
+	} else{
+		return false
+	}
 }
 
 //Her prøver jeg å hente videoer fra api og formatere videoene
