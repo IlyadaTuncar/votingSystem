@@ -35,21 +35,14 @@ function sluttDatoFunksjon(pollSluttDato) {
 }
 
 function hentPollTittel(title) {
-    let table = '<div class="container">'
+    let table = '<h1 class="jumbotron-heading">' + title + '</h1>'
 
-    table += '<h1 class="jumbotron-heading">' + title + '</h1>'
-
-    table += '</div>'
     $(".pollTitle").html(table)
 }
 
 function hentPollBeskrivelse(poll_description) {
-    let table = '<div class="container">'
+    let table = '<h3>' + poll_description + '</h3>'
 
-    table += '<h3>' + poll_description + '</h3>'
-    table += `<p> kommentar </p>`
-
-    table += '</div>'
     $(".pollBeskrivelse").html(table)
 }
 
