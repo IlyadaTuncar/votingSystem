@@ -37,7 +37,7 @@ def create_poll():
 	#Etter vi har databasen kan vi sjekke om avstemmingen ble lagt til ordentlig
 	success = True
 	if(success):
-		return "Poll er opprettet"
+		return jsonify("Poll er opprettet")
 	else:
 		return "Kunne ikke opprette poll"
 
