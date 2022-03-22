@@ -1,23 +1,19 @@
-.navbar-custom {
+/*.navbar-custom {
 	background-color: #10253e;
 }
-.root {
 
-	background-color: #10253e;
-}
+
+
 body{
 	background-color: #f5f6fa;
 }
 
-.row{
-	margin-bottom: 10px;
-	margin-left: auto;
+#tittelBoks {
+	width
 }
-.col-sm{
-	margin-bottom: 10px;
-}
+
 #videoBoks {
-	width: 55%;
+	width: 40%;
 	float: none;
 	position: relative;
 	min-height: 1px;
@@ -34,7 +30,7 @@ body{
 } 
   
 .videoTab {
-	float: inherit;
+	float: right;
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	background-color: #f1f1f1;
@@ -126,4 +122,7 @@ body{
 	width: 50%;
 	text-align: center;
 }
+
+ */
+
 
