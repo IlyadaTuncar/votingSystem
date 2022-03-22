@@ -29,8 +29,12 @@ function createPoll(){
 	//poster poll objectet til backend
 
 	//Ikke gjort enda. returner info om suksess eller feil ved oppretting av poll og send det til den nye nettsiden
-	postSetPoll(poll)
-	window.location.href = '/opprettetPoll'
+	if(postSetPoll(poll)){
+		$("#myModal").modal('hide');
+		$("#feilModal").modal();
+	} else{
+		window.location.href = '/opprettetPoll'
+	}
 	return
 }
 
@@ -68,7 +72,7 @@ function postSetPoll(poll){
 		data:JSON.stringify(poll),
 		contentType:"application/json; charset=utf-8",
 		dataType:"json",
-		success: function(){
+		success: function(data){
 			output=data;
 		}
 	})
