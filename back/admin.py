@@ -3,12 +3,11 @@ from asyncore import poll
 import sys
 from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
 import json
-from database_repo import *
 
 app = Flask(__name__,
 			template_folder='../front/templates',
-			static_url_path='', 
-            static_folder='../front/static',)
+			static_url_path='',
+			static_folder='../front/static',)
 
 polls = []
 
@@ -28,7 +27,7 @@ def get_poll(id):
 
 @app.route('/opprettetPoll', methods = ['GET', 'POST'])
 def serve_opprettet_poll():
-    return render_template('opprettetPoll.html')
+	return render_template('opprettetPoll.html')
 
 @app.route('/create_poll', methods = ['POST'])
 def create_poll():
@@ -38,46 +37,34 @@ def create_poll():
 	#Etter vi har databasen kan vi sjekke om avstemmingen ble lagt til ordentlig
 	success = True
 	if(success):
-		return jsonify("Poll er opprettet")
+		return "Poll er opprettet"
 	else:
 		return "Kunne ikke opprette poll"
 
 
 @app.route('/', methods = ['GET','POST'])
 def output():
-    # serve index template
+	# serve index template
 	return render_template('index.html')
 
 
 @app.route('/admin', methods = ['GET', 'POST'])
 def serve_admin():
-    return render_template('adminside.html')
+	return render_template('adminside.html')
 
 
 @app.route('/fan', methods = ['GET', 'POST'])
 def serve_fan():
-    return render_template('fanside.html')
+	return render_template('fanside.html')
 
 @app.route('/avsluttetPoll', methods = ['GET', 'POST'])
 def serve_avsluttetPoll():
-    return render_template('avsluttetPoll.html')
+	return render_template('avsluttetPoll.html')
 
 @app.route('/static/JS/<path:path>')
 def send_js(path):
-    return send_from_directory('JS', path)
-
-
-@app.route('/newvote', methods = ['POST'])
-def register_vote():
-    # serve index template
-	# legg til i riktig vote
-	request_data = request.json
-	success = True
-	if(success):
-		return jsonify("Stemme er registrert")
-	else:
-		return "Kunne ikke registrere stemme"
+	return send_from_directory('JS', path)
 
 if __name__ == '__main__':
-    # run!
-    app.run(debug=True)
+	# run!
+	app.run(debug=True)
