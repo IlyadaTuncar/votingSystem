@@ -31,147 +31,45 @@
 		</nav>
  <main role="main">
 
-
-
-		<section class ="text-center">
+	 <section class ="text-center">
 			<span class="pollTitle"></span>
 			<span class="pollBeskrivelse"></span>
-		</section>
+	 </section>
 
-
-		<div class="content py-5 bg-light">
-			<div class="container">
-				<div class="row justify-content-md-center">
-					<div class="videoTab"> </div>
-					<div class="col-md-5">
-						<div class="card mb-5 box-shadow">
-							<img class="card-img-top" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Card image cap">
-							<div class="card-body">
-								<h5>tittel til video</h5>
-								<p class="card-text">Her kan vi legge til beskrivelse av video</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-5">
-						<div class="card mb-5 box-shadow">
-							<img class="card-img-top" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Card image cap">
-							<div class="card-body">
-								<h5>tittel til video</h5>
-								<p class="card-text">Her kan vi legge til beskrivelse av video</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-5">
-						<div class="card mb-5 box-shadow">
-							<img class="card-img-top" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Card image cap">
-							<div class="card-body">
-								<h5>tittel til video</h5>
-								<p class="card-text">Her kan vi legge til beskrivelse av video</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-5">
-						<div class="card mb-5 box-shadow">
-							<img class="card-img-top" src="//d16e31wd87mjz3.cloudfront.net/eliteserien/static/media/logo-eliteserien.21ad0a65.png" alt="Card image cap">
-							<div class="card-body">
-								<h5>tittel til video</h5>
-								<p class="card-text">Her kan vi legge til beskrivelse av video</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		</div>
-
-		<!--Gammel kode nedover-->
-		<div class="container main-body-container">
-			<div id="videoBoks" class="row">
-				<div class="content-block row">
-					<div class="goal-showcase">
-						<video
-								id="videoPlayer"
-								class="video-js vjs-big-play-centered"
-								controls
-								preload="auto"
-								width="465"
-								height="262"
-								data-setup="{}"
-						> </video>
-					</div>
-					<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>
-				</div>
-
-				<!--<div id="listeBoks" class="col-xs-12">
-					<div class="content-block row">
-						<div class="videoTab">
-						</div>
-					</div>
-				</div>-->
-
-
-				<div class="content-block row">
-					<!-- Trigger the modal with a button -->
-					<div class="text-center content content-block-title col-xs-12">
-						<button id="stem_button" class="button button--full" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem nu</strong></button>
-				    </div>
-				</div>
+	 <div class="videoTab"></div>
 
 					<!-- Modal -->
-					<div class="modal fade" id="myModal" role="dialog">
-						<div class="modal-dialog">
+	 <div class="modal fade" id="myModal" role="dialog">
+		 <div class="modal-dialog">
 
 							<!-- Modal content-->
-							<div class="modal-content">
-								<div class="modal-header">
-									<h2 class="modal-title">Fyll inn informasjon</h2>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times</span>
-									</button>
-
-								</div>
-								<div class="modal-body">
-									<label>Navn</label>
-									<input id="navn" type="text" name="navn" id="navn" class="form-control"/>
-									<br />
-									<label>Email</label>
-									<input id="email" type="email" name="email" id="email" class="form-control"/>
-									<br />
-									<label>Valgtevideoer</label>
-									<br />
-									<label>Beskrivelse</label>
-									<textarea id="videobeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
-									<br />
-								</div>
-								<div class="modal-footer">
-									<button type="button" name="opprettStem_button" onlick="createVote()" id="opprettStem_button" class="btn btn-primary">Stem</button>
-									<button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
-								</div>
-							</div>
-						</div>
-					</div>
-			</div>
-		</div>
+			 <div class="modal-content">
+				 <div class="modal-header">
+					 <h2 class="modal-title">Fyll inn informasjon</h2>
+					 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						 <span aria-hidden="true">&times</span>
+					 </button>
+				 </div>
+				 <div class="modal-body">
+					 <label>Navn</label>
+					 <input id="navn" type="text" name="navn" id="navn" class="form-control"/>
+					 <br />
+					 <label>Email</label>
+					 <input id="email" type="email" name="email" id="email" class="form-control"/>
+					 <br />
+					 <label>Valgtevideoer</label>
+					 <br />
+					 <label>Beskrivelse</label>
+					 <textarea id="videobeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
+					 <br />
+				 </div>
+				 <div class="modal-footer">
+					 <button type="button" name="opprettStem_button" onlick="createVote()" id="opprettStem_button" class="btn btn-primary">Stem</button>
+					 <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
+				 </div>
+			 </div>
+		 </div>
+	 </div>
  </main>
 </body>
 
