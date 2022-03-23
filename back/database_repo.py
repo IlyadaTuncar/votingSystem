@@ -1,10 +1,10 @@
 import psycopg2
 def open_con():
 	con = psycopg2.connect(
-				host = "localhost",
-				database="votesystemdb",
-				user = "postgres",
-            password = "derfor32")
+			host = "localhost",
+			database="votesystemdb",
+			user = "postgres",
+            password = "")
 	return con
 #get metoder for poll
 
