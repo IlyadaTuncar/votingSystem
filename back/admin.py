@@ -66,6 +66,19 @@ def serve_avsluttetPoll():
 def send_js(path):
     return send_from_directory('JS', path)
 
+
+@app.route('/newvote', methods = ['POST'])
+def register_vote():
+    # serve index template
+	# legg til i riktig vote
+	request_data = request.json
+	print(request_data)	
+	success = True
+	if(success):
+		return jsonify("Stemme er registrert")
+	else:
+		return "Kunne ikke registrere stemme"
+
 if __name__ == '__main__':
     # run!
     app.run(debug=True)

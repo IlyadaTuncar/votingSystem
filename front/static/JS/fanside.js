@@ -82,3 +82,46 @@ function getPoll(id) {
         formaterOptions(data.options)
     });
 }
+
+//utvid mail sjekken så den fungerer bedre
+function sjekkMail(mail){
+	if (mail==""){
+		return false
+	} else{
+		return true
+	}
+}
+
+function createVote() {
+
+	let navn = $("#navn").val()
+	let mail = $("#email").val()
+	
+	//poll_id og option id må sendes ifra databasen. Så kan den bli lagret
+	let option_id = "option_id funksjonen er ikke fikset enda"
+	let poll_id = "poll funksjonen er ikke fikset enda"
+	$("#feilMail").hide();
+
+	if(!sjekkMail(mail)){
+		$("#feilMail").show();
+		return
+	}
+
+	let vote ={"poll_id": poll_id,"option_id": option_id, "navn": navn, "mail": mail}
+	let output ="ajax call failed";
+
+	$.ajax({
+		url: '/newvote',
+		method: "POST",
+		data: JSON.stringify(vote),
+		contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		async: false,
+		success: function (data) {
+			output=data
+        }
+	})
+	console.log(output);
+	return;
+	
+}

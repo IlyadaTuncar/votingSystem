@@ -64,7 +64,7 @@
 				<div class="content-block row">
 					<!-- Trigger the modal with a button -->
 					<div class="text-center content content-block-title col-xs-12">
-					<button id="stem_button" class="button button--full" data-toggle="modal" data-target="#myModal" type="submit">Stem nu</button>
+					<button id="stem_button" class="button button--full" data-toggle="modal" data-target="#myModal" type="submit">Stem nå</button>
 				    </div>
 					<!-- Modal -->
 					<div class="modal fade" id="myModal" role="dialog">
@@ -78,16 +78,15 @@
 								</div>
 								<div class="modal-body">
 									<label>Navn</label>
-									<input id="navn" type="text" name="navn" id="navn" class="form-control"/>
+									<input id="navn" type="text" name="navn" class="form-control"/>
 									<br />
 									<label>Email</label>
-									<input id="email" type="email" name="email" id="email" class="form-control"/>
-									<label>Beskrivelse</label>
-									<textarea id="pollBeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
+									<input id="email" type="email" name="email" class="form-control"/>
+									<label class="text-danger" id="feilMail" style="display: none;">Ikke gyldig mail-addresse</label>
 									<br />
 								</div>
 								<div class="modal-footer">
-									<button type="button" name="opprettStem_button" onlick="createVote()" id="opprettStem_button" class="btn btn-primary">Stem</button>
+									<button type="button" name="opprettStem_button" onclick="createVote()" id="opprettStem_button" class="btn btn-primary">Stem</button>
 									<button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
 								</div>
 							</div>
