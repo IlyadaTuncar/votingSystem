@@ -72,7 +72,6 @@ def register_vote():
     # serve index template
 	# legg til i riktig vote
 	request_data = request.json
-	print(request_data)	
 	success = True
 	if(success):
 		return jsonify("Stemme er registrert")
