@@ -31,13 +31,12 @@ function createPoll() {
 	//poster poll objectet til backend
     //Ikke gjort enda. returner info om hvilken poll id den nye pollen har til nettsiden /opprettetPoll
 	if(postSetPoll(poll)){
+		window.location.href = '/opprettetPoll'
+	} else{
 		$("#myModal").modal('hide');
 		$("#feilModal").modal();
-	} else{
-		window.location.href = '/opprettetPoll'
 	}
 	return
-    return
 }
 
 //Denne metoden skal senere ta inn tittel og text i tillegg
@@ -72,18 +71,22 @@ function formaterTitler() {
 
 
 function postSetPoll(poll){
-	let output=""
+	let output="";
+	/*$.post('/create_poll', poll, function(data){
+		console.log(data)
+	})*/
 	$.ajax({
-		url:'/create_poll',
-		method:"POST",
-		data:JSON.stringify(poll),
-		contentType:"application/json; charset=utf-8",
-		dataType:"json",
-		success: function(data){
-			output=data;
-		}
+		url: '/create_poll',
+		method: "POST",
+		data: JSON.stringify(poll),
+		contentType: "application/json; charset=utf-8",
+		dataType: "json",
+		async: false,
+		success: function (data) {
+			output=data
+        }
 	})
-	
+
 	//returner info om suksess eller feil ved oppretting av poll og send det til den nye nettsiden
 	if(output=="Poll er opprettet"){
 		return true
