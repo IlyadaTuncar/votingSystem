@@ -3,6 +3,7 @@ from asyncore import poll
 import sys
 from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
 import json
+from database_repo import *
 
 app = Flask(__name__,
 			template_folder='../front/templates',
