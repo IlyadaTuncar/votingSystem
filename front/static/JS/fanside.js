@@ -19,7 +19,7 @@ function openVideo(video_url) {
 
 
 function hentPollBeskrivelse(poll_description) {
-    let table = '<h3>' + poll_description + '</h3>'
+    let table = '<h5>' + poll_description + '</h5>'
     $(".pollBeskrivelse").html(table)
 }
 
