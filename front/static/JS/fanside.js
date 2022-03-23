@@ -47,14 +47,25 @@ function hentPollBeskrivelse(poll_description) {
 }
 
 function formaterOptions(options) {
-    let table = '<div class="button-container">'
+    let table = '<div class="col-md-5">'
+    table += '<div class="card mb-5 box-shadow">' + '<div class="card mb-5 box-shadow">'
     for (o of options) {
-        table += '<button class="tablinks" onclick="openVideo(' + "'" + o.video_url + "'" + ');formaterVideoBeskrivelse(' + "'" + o.scorerlag + "'" + "," + "'" + o.scorer + "'" + "," + "'" + o.motstander + "'" + "," + "'" + o.dato + "'" + ');"><img id="tumbnail" src="' + o.thumbnail + '">' + '<h4 id="buttonTitles">Mål ' + o.scorerlag + '!&nbspScoring av&nbsp' + o.scorer + '&nbspmot&nbsp' + o.motstander + '.</h4></button>'
+        table += '<img class="card-img-top" src="' + o.thumbnail +'" onclick="openVideo(' + "'" + o.video_url + "'" + ');' +
+            'formaterVideoBeskrivelse(' + "'" + o.scorerlag + "'" + "," + "'" + o.scorer + "'" + "," + "'" +
+            o.motstander + "'" + "," + "'" + o.dato + "'" + ');>'
+        table += '<div class="card-body">'
+        table += '<h4 id="buttonTitles">Mål ' + o.scorerlag + '!&nbspScoring av&nbsp' + o.scorer + '&nbspmot&nbsp' + o.motstander + '.</h4>'
+        table += '<div class="btn-group">' + '<button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>'
     }
-    table += '</div>'
+    table += '</div>' + '</div>' + '</div>' + '</div>' + '</div>'
     $(".videoTab").html(table)
 }
-
+/*table += '<button class="tablinks" onclick="openVideo(' + "'" + o.video_url + "'" + ');' +
+    'formaterVideoBeskrivelse(' + "'" + o.scorerlag + "'" + "," + "'" + o.scorer + "'" + "," + "'" +
+    o.motstander + "'" + "," + "'" + o.dato + "'" + ');"><img id="tumbnail" src="' + o.thumbnail + '">' +
+    '<h4 id="buttonTitles">Mål ' + o.scorerlag + '!&nbspScoring av&nbsp' + o.scorer + '&nbspmot&nbsp' + o.motstander + '.</h4></button>'
+    
+ */
 function formaterVideoBeskrivelse(scorerlag, scorer, motstander, dato){
 	let table='<div class="beskrivelse">'
 		table += '<h4>Mål ' + scorerlag + '!&nbspScoring av&nbsp' + scorer+ '&nbspmot&nbsp' +motstander + '.</h4>'
