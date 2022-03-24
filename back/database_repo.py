@@ -7,9 +7,20 @@ def open_con():
 					host = "localhost",
 					database="votesystemdb",
 					user = "postgres",
- 					password = "")
+ 					password = "derfor32")
 	return con
  #get metoder for poll
+
+def format_row_to_poll(row, options):
+	poll = {'id': row[0], "client_id" : row[1], "title": row[2], "poll_description": row[3], "pollSluttDato": row[4], "options": options}
+	return poll
+
+def format_row_to_options(rows):
+	options = []
+	for row in rows:
+		option = {'id': row[0],'poll_id':row[1], 'title': row[2], 'link': row[3], 'dato': row[4], 'scorer': row[5], 'scorerlag': row[6], 'motstander': row[7], 'thumbnail': row[8]}
+		options.append(option)
+	return options
 
 def get_all_polls():
 		#cursor 
@@ -25,20 +36,23 @@ def get_all_polls():
 		#return rows
 		return rows
 
-def get_poll_by_id(id):
+def get_poll_by_id(pid):
 		#cursor 
 		con = open_con()
 		cur = con.cursor()
 		#execute query on poll table
-		query = f"SELECT * FROM TBL_POLL WHERE id = {id};"
+		query = f"SELECT * FROM TBL_POLL WHERE id = {pid};"
 		cur.execute(query)
-		rows = cur.fetchall()
+		row = cur.fetchone()
 		#close the cursor
 		cur.close()
 		#close the connection
 		con.close()
+
+		options = get_options_for_poll_id(pid)
+		poll = format_row_to_poll(row, options)
 		#return rows
-		return rows
+		return poll
 
  #get metoder for option
 def get_all_options():
@@ -64,8 +78,10 @@ def get_options_for_poll_id(poll_id):
 	cur.close()
 	#close the connection
 	con.close()
+
+	options = format_row_to_options(rows)
 	#return rows
-	return rows
+	return options
 
 
 ###########################
@@ -107,3 +123,22 @@ def db_add_opption(poll_id, option):
 	cur.close()
 	con.close()
 	return
+
+
+def db_add_vote(vote):
+	con = open_con()
+	cur = con.cursor()
+	#execute query on poll table
+
+	vars = ( vote.get('option_id'), vote.get('mail'))
+	insert_query = "insert into TBL_OPTION (poll_id, option_title values (%s, %s)"
+	
+	cur.execute(insert_query, vars)
+	#commit the query
+	con.commit()
+	#close the cursor and connection
+	cur.close()
+	con.close()
+	return
+
+print(get_poll_by_id(1))
