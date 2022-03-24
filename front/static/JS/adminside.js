@@ -25,33 +25,37 @@ function createPoll() {
     const pollTittel = document.getElementById("pollTittel").value;
     const pollBeskrivelse = document.getElementById("pollBeskrivelse").value;
     const pollSluttDato = document.getElementById("pollSluttDato").value;
-	//hardkoder inn en klient id fordi vi ikke har noen logg inn funksjon hvor vi kan ha forskjellige klienter
-	//men vi regner med at forzasys kommer til å ha dette for kundene sine 
-	const clinet_id = 1;
-	
-	$("#feilPollTittel").hide();
-	$("#feilBeskrivelse").hide();
+    //hardkoder inn en klient id fordi vi ikke har noen logg inn funksjon hvor vi kan ha forskjellige klienter
+    //men vi regner med at forzasys kommer til å ha dette for kundene sine 
+    const clinet_id = 1;
+
+    $("#feilPollTittel").hide();
+    $("#feilBeskrivelse").hide();
+    $("#feilSluttDato").hide();
 
     //oppretter et poll object
-    let poll = { "client_id" : clinet_id, "title": pollTittel, "poll_description": pollBeskrivelse, "pollSluttDato": pollSluttDato, "options": options }
-    
-	
-	if(!validerPollTittel(pollTittel)){
-		$("#feilPollTittel").show();
-		return
-	}else if(!validerPollBeskrivelse(pollBeskrivelse)){
-		$("#feilBeskrivelse").show();
-		return
-	}
-	//poster poll objectet til backend
+    let poll = { "client_id": clinet_id, "title": pollTittel, "poll_description": pollBeskrivelse, "pollSluttDato": pollSluttDato, "options": options }
+
+
+    if (!validerPollTittel(pollTittel)) {
+        $("#feilPollTittel").show();
+        return
+    } else if (!validerPollBeskrivelse(pollBeskrivelse)) {
+        $("#feilBeskrivelse").show();
+        return
+    } else if (!validerPollSluttDato(pollSluttDato)) {
+        $("#feilSluttDato").show();
+        return
+    }
+    //poster poll objectet til backend
     //Ikke gjort enda. returner info om hvilken poll id den nye pollen har til nettsiden /opprettetPoll
-	if(postSetPoll(poll)){
-		window.location.href = '/opprettetPoll'
-	} else{
-		$("#myModal").modal('hide');
-		$("#feilModal").modal();
-	}
-	return
+    if (postSetPoll(poll)) {
+        window.location.href = '/opprettetPoll'
+    } else {
+        $("#myModal").modal('hide');
+        $("#feilModal").modal();
+    }
+    return
 }
 
 //Denne metoden skal senere ta inn tittel og text i tillegg
@@ -61,8 +65,8 @@ function createOption(title, link, dato, scorer, scorerlag, motstander, thumbnai
         "title": title,
         "video_url": link,
         "dato": dato,
-		"scorer":scorer,
-		"scorerlag":scorerlag,
+        "scorer": scorer,
+        "scorerlag": scorerlag,
         "motstander": motstander,
         "thumbnail": thumbnail
     }
@@ -85,29 +89,29 @@ function formaterTitler() {
 }
 
 
-function postSetPoll(poll){
-	let output="";
-	/*$.post('/create_poll', poll, function(data){
-		console.log(data)
-	})*/
-	$.ajax({
-		url: '/create_poll',
-		method: "POST",
-		data: JSON.stringify(poll),
-		contentType: "application/json; charset=utf-8",
-		dataType: "json",
-		async: false,
-		success: function (data) {
-			output=data
+function postSetPoll(poll) {
+    let output = "";
+    /*$.post('/create_poll', poll, function(data){
+    	console.log(data)
+    })*/
+    $.ajax({
+        url: '/create_poll',
+        method: "POST",
+        data: JSON.stringify(poll),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        async: false,
+        success: function(data) {
+            output = data
         }
-	})
+    })
 
-	//returner info om suksess eller feil ved oppretting av poll og send det til den nye nettsiden
-	if(output=="Poll er opprettet"){
-		return true
-	} else{
-		return false
-	}
+    //returner info om suksess eller feil ved oppretting av poll og send det til den nye nettsiden
+    if (output == "Poll er opprettet") {
+        return true
+    } else {
+        return false
+    }
 }
 
 //Her prøver jeg å hente videoer fra api og formatere videoene
@@ -126,7 +130,7 @@ async function getapi() {
             for (c of b.tags) {
                 table +=
                     "<div class='col-sm'>" +
-                    "<input type='checkbox' id='option1' name='option1' data-scorerlag='"+c.team.value+"' data-scorer='" + c.scorer.value + "' data-dato='" + a.game.date + "' data-motstander='" + a.game.visiting_team.name + "' data-title='" + a.description + "' data-vidlink='" + a.video_url + "' data-thumbnail='" + a.thumbnail_url + "'></input>" +
+                    "<input type='checkbox' id='option1' name='option1' data-scorerlag='" + c.team.value + "' data-scorer='" + c.scorer.value + "' data-dato='" + a.game.date + "' data-motstander='" + a.game.visiting_team.name + "' data-title='" + a.description + "' data-vidlink='" + a.video_url + "' data-thumbnail='" + a.thumbnail_url + "'></input>" +
                     "<label id='optionLabel' for='option1'>Velg</label>" +
                     "<video id='my-video' class='video-js vjs-big-play-centered' controls preload='auto' width='320' height='180' poster='" + a.thumbnail_url + "' data-setup='{}'>" +
                     "<source src='" + a.video_url + "' type='application/x-mpegURL' />" +
@@ -149,27 +153,39 @@ async function getapi() {
 }
 
 
-function validerPollTittel(tittel){
-	const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,100}$/;
+function validerPollTittel(tittel) {
+    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,100}$/;
     const ok = regexp.test(tittel);
-    if (!ok || (tittel='')){
+    if (!ok || (tittel = '')) {
         $("#feilPollTittel").html("Poll tittel må fylles ut med minst 2 bokstaver.")
-		return false
-	}
-    else{
+        return false
+    } else {
         $("#feilPollTittel").html("");
-		return true;
-	}
+        return true;
+    }
 }
-function validerPollBeskrivelse(beskrivelse){
-	const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,500}$/;
+
+function validerPollBeskrivelse(beskrivelse) {
+    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,500}$/;
     const ok = regexp.test(beskrivelse);
-    if (!ok || (beskrivelse='')){
+    if (!ok || (beskrivelse = '')) {
         $("#feilBeskrivelse").html("Poll beskrivelse må fylles ut med minst 2 bokstaver.")
-		return false
-	}
-    else{
+        return false
+    } else {
         $("#feilBeskrivelse").html("");
-		return true;
-	}
+        return true;
+    }
+}
+
+function validerPollSluttDato(sluttdato) {
+
+    const regexp = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+    const ok = regexp.test(sluttdato);
+    if (!ok || (sluttdato = '')) {
+        $("#feilPollSluttDato").html("Polldato må fylles ut.")
+        return false
+    } else {
+        $("#feilPollSluttDato").html("");
+        return true;
+    }
 }
