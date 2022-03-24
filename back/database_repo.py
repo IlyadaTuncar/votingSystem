@@ -140,5 +140,3 @@ def db_add_vote(vote):
 	cur.close()
 	con.close()
 	return
-
-print(get_poll_by_id(1))
