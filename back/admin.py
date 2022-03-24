@@ -35,6 +35,7 @@ def create_poll():
 	request_data = request.json
 	polls.append(request_data)
 
+	db_add_poll_and_options(request_data)
 	#Etter vi har databasen kan vi sjekke om avstemmingen ble lagt til ordentlig
 	success = True
 	if(success):

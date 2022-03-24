@@ -16,12 +16,12 @@ CREATE TABLE TBL_POLL (
 CREATE TABLE TBL_OPTION (
 	id SERIAL PRIMARY KEY,
 	poll_id INT,
-	option_title varchar(40), 
+	option_title varchar(100), 
 	video_url varchar(250),
-	dato varchar(12),
-	scorer varchar(90),
-	scorerlag varchar(60),
-	motstander varchar(60),
+	dato varchar(25),
+	scorer varchar(100),
+	scorerlag varchar(10),
+	motstander varchar(100),
 	thumbnail_url varchar(250),
 	
    	CONSTRAINT fk_option
