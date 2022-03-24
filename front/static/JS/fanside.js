@@ -5,7 +5,7 @@ $(document).ready(function() {
 // må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
 
 
-function openVideo(event, video_url) {
+function openVideo(video_url) {
     var videoElm = videojs("videoPlayer");
 
     if (!videoElm.paused()) {
@@ -15,20 +15,6 @@ function openVideo(event, video_url) {
     videoElm.play()
 
 }
-
-
-
-function hentPollBeskrivelse(poll_description) {
-    let table = '<div class="container">'
-
-    table += '<h3>' + poll_description + '</h3>'
-
-    table += '</div>'
-    $(".pollBeskrivelse").html(table)
-
-
-}
-
 
 function sluttDatoFunksjon(pollSluttDato) {
 
@@ -44,23 +30,57 @@ function sluttDatoFunksjon(pollSluttDato) {
 }
 
 function hentPollTittel(title) {
-    let table = '<div class="container">'
+    let table = '<h1 class="jumbotron-heading">' + title + '</h1>'
 
-    table += '<h1>' + title + '</h1>'
-
-    table += '</div>'
     $(".pollTitle").html(table)
+}
 
+function hentPollBeskrivelse(poll_description) {
+    let table = '<h3>' + poll_description + '</h3>'
 
+    $(".pollBeskrivelse").html(table)
 }
 
 function formaterOptions(options) {
-    let table = '<div class="button-container">'
+    let table =
+        '<div class="content py-5 bg-light">' +
+        '<div class="container">' +
+        '<div class="row">'
     for (o of options) {
-        table += '<button class="tablinks" onclick="openVideo(event, ' + "'" + o.video_url + "'" + ')"><img id="tumbnail" src="' + o.thumbnail + '">' + '<h4 id="buttonTitles">Mål ' + o.scorerlag + '!&nbspScoring av&nbsp' + o.scorer + '&nbspmot&nbsp' + o.motstander + '.</h4></button>'
+        table +=
+            '<div class="col-md-4">' +
+            '<div class="card md-4 box-shadow">' +
+            '<video id ="my-video" class="video-js vjs-big-play-centered card-img-top" controls preload="auto" width="560" height="197" poster=" ' + o.thumbnail +'" data-setup="{}" >' +
+            '<source src="' + o.video_url + '" type="application/x-mpegURL" />' +
+            '<p class="vjs-no-js"> To view this video please enable Javascript, and consider upgrading to a web browser that' +
+            '<a href="https://videojs.com/html5-video-support/" target="_blank">suppoerts HTML5 video</a>' +
+            '</p>' +
+            '</video>' +
+            '<div class="card-body">' +
+            '<h6 id="buttonTitles">Scoring av&nbsp' + o.scorer + '&nbspVS&nbsp' + o.motstander + '</h6>' +
+            '<br/>' +
+            '<p style="font-size: 12px">Dato:' + o.dato + '</p>' +
+            '<div class="d-flex justify-content-between align-items-center">' +
+            '<div class="btn-group">' +
+            '<button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
+            '</div>' +
+            '<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>' +
+            '</div>' +
+            '</div>' +
+            '</div>' +
+            '</div>' 
     }
-    table += '</div>'
+    table += '</div>' + '</div>' + '</div>'
     $(".videoTab").html(table)
+}
+
+function formaterVideoBeskrivelse(scorerlag, scorer, motstander,dato){
+	let table=
+       '<div class="beskrivelse">'
+		table += '<h5>Mål ' + scorerlag + '!&nbspScoring av&nbsp' + scorer+ '&nbspmot&nbsp' +motstander + '.</h5>'
+		table += '<h6>Dato: ' + dato + '</h6>'
+		table += '</div>'
+	$(".videoBeskrivelse").html(table)
 }
 
 
@@ -70,9 +90,7 @@ function getPolls() {
         hentPollTittel(data[0].title)
         hentPollBeskrivelse(data[0].poll_description)
         sluttDatoFunksjon(data[0].pollSluttDato)
-
-
-
+        formaterVideoBeskrivelse(data[0].dato)
     });
 }
 
@@ -83,12 +101,17 @@ function getPoll(id) {
     });
 }
 
-//utvid mail sjekken så den fungerer bedre
+//utvid mail sjekken så den fungerer bedre -- Lagd funskjonen. Kan lage flere om dette
 function sjekkMail(mail){
-	if (mail==""){
+    const regexp = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+    const ok = regexp.test(mail);
+    if (!ok){
+        $("#feilMail").html("Feil format på email. vennligst legg til riktig email")
 		return false
-	} else{
-		return true
+	}
+    else{
+        $("#feilMail").html("");
+		return true;
 	}
 }
 
