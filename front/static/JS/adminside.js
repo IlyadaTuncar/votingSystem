@@ -152,7 +152,7 @@ async function getapi() {
 function validerPollTittel(tittel){
 	const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
     const ok = regexp.test(tittel);
-    if (!ok){
+    if (!ok || (tittel='')){
         $("#feilPollTittel").html("Poll tittel må fylles ut.")
 		return false
 	}
@@ -164,7 +164,7 @@ function validerPollTittel(tittel){
 function validerPollBeskrivelse(beskrivelse){
 	const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,100}$/;
     const ok = regexp.test(beskrivelse);
-    if (!ok){
+    if (!ok || (beskrivelse='')){
         $("#feilBeskrivelse").html("Poll beskrivelse må fylles ut.")
 		return false
 	}
