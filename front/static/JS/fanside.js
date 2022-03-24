@@ -62,7 +62,7 @@ function formaterOptions(options) {
             '<p style="font-size: 12px">Dato:' + o.dato + '</p>' +
             '<div class="d-flex justify-content-between align-items-center">' +
             '<div class="btn-group">' +
-            '<button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
+            '<button id="stemButton" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
             '</div>' +
             '<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>' +
             '</div>' +
