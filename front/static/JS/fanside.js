@@ -58,6 +58,8 @@ function formaterOptions(options) {
             '</video>' +
             '<div class="card-body">' +
             '<h6 id="buttonTitles">Scoring av&nbsp' + o.scorer + '&nbspVS&nbsp' + o.motstander + '</h6>' +
+            '<br/>' +
+            '<p style="font-size: 12px">Dato:' + o.dato + '</p>' +
             '<div class="d-flex justify-content-between align-items-center">' +
             '<div class="btn-group">' +
             '<button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
@@ -66,16 +68,17 @@ function formaterOptions(options) {
             '</div>' +
             '</div>' +
             '</div>' +
-            '</div>'
+            '</div>' 
     }
     table += '</div>' + '</div>' + '</div>'
     $(".videoTab").html(table)
 }
 
-function formaterVideoBeskrivelse(scorerlag, scorer, motstander, dato){
-	let table='<div class="beskrivelse">'
-		table += '<h4>Mål ' + scorerlag + '!&nbspScoring av&nbsp' + scorer+ '&nbspmot&nbsp' +motstander + '.</h4>'
-		table += '<h5>Dato: ' + dato + '</h5>'
+function formaterVideoBeskrivelse(scorerlag, scorer, motstander,dato){
+	let table=
+       '<div class="beskrivelse">'
+		table += '<h5>Mål ' + scorerlag + '!&nbspScoring av&nbsp' + scorer+ '&nbspmot&nbsp' +motstander + '.</h5>'
+		table += '<h6>Dato: ' + dato + '</h6>'
 		table += '</div>'
 	$(".videoBeskrivelse").html(table)
 }
@@ -87,6 +90,7 @@ function getPolls() {
         hentPollTittel(data[0].title)
         hentPollBeskrivelse(data[0].poll_description)
         sluttDatoFunksjon(data[0].pollSluttDato)
+        formaterVideoBeskrivelse(data[0].dato)
     });
 }
 
@@ -97,7 +101,7 @@ function getPoll(id) {
     });
 }
 
-//utvid mail sjekken så den fungerer bedre -- Lagd funskjonen
+//utvid mail sjekken så den fungerer bedre -- Lagd funskjonen. Kan lage flere om dette
 function sjekkMail(mail){
     const regexp = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
     const ok = regexp.test(mail);
