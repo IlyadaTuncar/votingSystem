@@ -14,7 +14,7 @@ polls = []
 
 @app.route('/get_polls', methods = ['GET'])
 def get_options():
-	data = polls
+	data = get_poll_by_id(1)
 	return jsonify(data)
 
 @app.route('/get_poll/<id>', methods = ['GET'])

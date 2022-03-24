@@ -62,7 +62,7 @@ function formaterOptions(options) {
             '<p style="font-size: 12px">Dato:' + o.dato + '</p>' +
             '<div class="d-flex justify-content-between align-items-center">' +
             '<div class="btn-group">' +
-            '<button id="stemButton" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
+            '<button id="stemButton" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit" data-optionid='+o.id+'><strong>Stem på video</strong></button>' +
             '</div>' +
             '<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>' +
             '</div>' +
@@ -86,11 +86,11 @@ function formaterVideoBeskrivelse(scorerlag, scorer, motstander,dato){
 
 function getPolls() {
     $.get('/get_polls', function(data) {
-        formaterOptions(data[0].options)
-        hentPollTittel(data[0].title)
-        hentPollBeskrivelse(data[0].poll_description)
-        sluttDatoFunksjon(data[0].pollSluttDato)
-        formaterVideoBeskrivelse(data[0].dato)
+        formaterOptions(data.options)
+        hentPollTittel(data.title)
+        hentPollBeskrivelse(data.poll_description)
+        sluttDatoFunksjon(data.pollSluttDato)
+        formaterVideoBeskrivelse(data.dato)
     });
 }
 
