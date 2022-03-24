@@ -129,8 +129,8 @@ def db_add_vote(vote):
 	cur = con.cursor()
 	#execute query on poll table
 
-	vars = ( vote.get('option_id'), vote.get('mail'))
-	insert_query = "insert into TBL_OPTION (poll_id, option_title values (%s, %s)"
+	vars = ( vote.get('option_id'), vote.get('email'))
+	insert_query = "insert into TBL_VOTE (option_id, email) values (%s, %s)"
 	
 	cur.execute(insert_query, vars)
 	#commit the query

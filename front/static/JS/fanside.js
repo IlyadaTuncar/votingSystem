@@ -62,7 +62,7 @@ function formaterOptions(options) {
             '<p style="font-size: 12px">Dato:' + o.dato + '</p>' +
             '<div class="d-flex justify-content-between align-items-center">' +
             '<div class="btn-group">' +
-            '<button id="stemButton" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
+            '<button id="stemButton" class="btn btn-sm btn-secondary" value="' + o.id + '" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
             '</div>' +
             '<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>' +
             '</div>' +
@@ -116,22 +116,17 @@ function sjekkMail(mail){
 }
 
 function createVote() {
-
-	let navn = $("#navn").val()
-	let mail = $("#email").val()
-	
-	//poll_id og option id må sendes ifra databasen. Så kan den bli lagret
-	let option_id = "option_id funksjonen er ikke fikset enda"
-	let poll_id = "poll funksjonen er ikke fikset enda"
+	let email = $("#email").val()
+	let option_id = document.getElementById('stemButton').getAttribute('value');
 	$("#feilMail").hide();
 
-	if(!sjekkMail(mail)){
+	if(!sjekkMail(email)){
 		$("#feilMail").show();
 		return
 	}
 
-	let vote ={"poll_id": poll_id,"option_id": option_id, "navn": navn, "mail": mail}
-	let output ="ajax call failed";
+	let vote ={"option_id": option_id, "email": email}
+	let output =""
 
 	$.ajax({
 		url: '/newvote',
@@ -144,6 +139,10 @@ function createVote() {
 			output=data
         }
 	})
-	return
+	if (output == "Stemme er registrert") {
+        return true
+    } else {
+        return false
+    }
 	
 }
