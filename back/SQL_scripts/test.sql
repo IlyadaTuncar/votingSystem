@@ -1,5 +1,8 @@
-DROP TABLE IF EXISTS TBL_OPTION;
+DROP TABLE IF EXISTS TBL_VOTE; 
+DROP TABLE IF EXISTS TBL_OPTION; 
 DROP TABLE IF EXISTS TBL_POLL;
+
+
 
 
 CREATE TABLE TBL_POLL (
@@ -27,6 +30,19 @@ CREATE TABLE TBL_OPTION (
 );
 
 
+CREATE TABLE TBL_VOTE ( 
+	id SERIAL PRIMARY KEY, 
+	option_id INT,
+	email VARCHAR(60), 
+	
+
+	
+	CONSTRAINT vote_option 
+		FOREIGN KEY (option_id) 
+			REFERENCES TBL_OPTION(id)
+);
+
+
 INSERT INTO TBL_POLL (Client_id, poll_title, poll_description, sluttdato)
 VALUES (45, 'Goal of the season', 'Which one of these three goals is the best of the season', '01-06-2022');
 
@@ -41,3 +57,9 @@ VALUES (1, 'Marcus Abrahamsen v Odd', 'vid url', '01-03-2022', 'Abrahamsen', 'B/
 
 INSERT INTO TBL_OPTION (poll_id, option_title, video_url, dato, scorer, scorerlag, motstander, thumbnail_url)
 VALUES (1, 'Marcus Abrahamsen v Vif', 'vid url', '01-02-2022', 'Abrahamsen', 'B/G', 'VIF', 'thumbnail_url');
+
+INSERT INTO TBL_VOTE (option_id, email) 
+VALUES (1, 'jklsdf123@email.com');
+
+INSERT INTO TBL_VOTE (option_id, email) 
+VALUES (2, 'sdfg234@gmail.com');
