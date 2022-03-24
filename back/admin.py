@@ -3,6 +3,7 @@ from asyncore import poll
 import sys
 from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
 import json
+from database_repo import *
 
 app = Flask(__name__,
 			template_folder='../front/templates',
@@ -37,7 +38,7 @@ def create_poll():
 	#Etter vi har databasen kan vi sjekke om avstemmingen ble lagt til ordentlig
 	success = True
 	if(success):
-		return "Poll er opprettet"
+		return jsonify("Poll er opprettet")
 	else:
 		return "Kunne ikke opprette poll"
 
@@ -64,6 +65,17 @@ def serve_avsluttetPoll():
 @app.route('/static/JS/<path:path>')
 def send_js(path):
 	return send_from_directory('JS', path)
+
+@app.route('/newvote', methods = ['POST'])
+def register_vote():
+	# serve index template
+ 	# legg til i riktig vote
+	request_data = request.json
+	success = True
+	if(success):
+		return jsonify("Stemme er registrert")
+	else:
+		return "Kunne ikke registrere stemme"	
 
 if __name__ == '__main__':
 	# run!

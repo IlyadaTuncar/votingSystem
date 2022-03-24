@@ -54,17 +54,23 @@
                         <h2 class="modal-title">Fyll inn poll-tittel og beskrivelse</h2>
                     </div>
                     <div class="modal-body">
+						<div class="form-group">
                         <label>Poll-tittel</label>
-                        <input id="pollTittel" type="text" name="tittel" id="tittel" class="form-control" />
-                        <br />
+                        <input id="pollTittel" onchange=validerPollTittel(this.value) type="text" name="tittel" id="tittel" class="form-control" />
+						<span id="feilPollTittel" style="color: red"></span>
+						</div>
                         <label>Poll-Sluttdato</label>
                         <input id="pollSluttDato" type="date" name="pollSluttDato" id="sluttdato" class="form-control" />
                         <br />
                         <label>Valgte videoer</label>
                         <div id="valgteVideoer" class="list-group"></div>
+						<div class="form-group">
                         <label>Beskrivelse</label>
-                        <textarea id="pollBeskrivelse" class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
+                        <textarea id="pollBeskrivelse" onchange=validerPollBeskrivelse(this.value) class="form-control" name="beskrivelse" id="beskrivelse" rows="3"></textarea>
+						<span id="feilBeskrivelse" style="color: red"></span>
+						</div>
                         <br />
+						<script src="/JS/adminside.js"></script>
                     </div>
                     <div class="modal-footer">
                         <button type="button" name="opprett_button" onclick="createPoll()" id="opprett_button" class="btn btn-primary">Opprett poll</button>

@@ -25,9 +25,21 @@ function createPoll() {
     const pollTittel = document.getElementById("pollTittel").value;
     const pollBeskrivelse = document.getElementById("pollBeskrivelse").value;
     const pollSluttDato = document.getElementById("pollSluttDato").value;
+	
+	$("#feilPollTittel").hide();
+	$("#feilBeskrivelse").hide();
+
     //oppretter et poll object
     let poll = { "title": pollTittel, "poll_description": pollBeskrivelse, "pollSluttDato": pollSluttDato, "options": options }
     
+	
+	if(!validerPollTittel(pollTittel)){
+		$("#feilPollTittel").show();
+		return
+	}else if(!validerPollBeskrivelse(pollBeskrivelse)){
+		$("#feilBeskrivelse").show();
+		return
+	}
 	//poster poll objectet til backend
     //Ikke gjort enda. returner info om hvilken poll id den nye pollen har til nettsiden /opprettetPoll
 	if(postSetPoll(poll)){
@@ -134,20 +146,27 @@ async function getapi() {
 }
 
 
-
-/*
-//Denne funksjonen har blitt brukt til å vise datane fra api'et til forzasys
-//Jeg har kommentert den ut, men jeg lar den ligge her i tilfelle noen får bruk for å se på apiet igjen
-
-async function checkApi() {
-    const response = await fetch(api_url);
-    const data = await response.json();
-
-	console.log(data.playlists)
-	for(element of data.playlists){
-		console.log("Thumbnail link:"+element.thumbnail_url)
-		console.log("HD Thumbnail link:"+element.hd_thumbnail_url)
-
+function validerPollTittel(tittel){
+	const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,20}$/;
+    const ok = regexp.test(tittel);
+    if (!ok){
+        $("#feilPollTittel").html("Poll tittel må fylles ut.")
+		return false
+	}
+    else{
+        $("#feilPollTittel").html("");
+		return true;
 	}
 }
-*/
+function validerPollBeskrivelse(beskrivelse){
+	const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,100}$/;
+    const ok = regexp.test(beskrivelse);
+    if (!ok){
+        $("#feilBeskrivelse").html("Poll beskrivelse må fylles ut.")
+		return false
+	}
+    else{
+        $("#feilBeskrivelse").html("");
+		return true;
+	}
+}
