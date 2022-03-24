@@ -25,8 +25,11 @@ function createPoll() {
     const pollTittel = document.getElementById("pollTittel").value;
     const pollBeskrivelse = document.getElementById("pollBeskrivelse").value;
     const pollSluttDato = document.getElementById("pollSluttDato").value;
+	//hardkoder inn en klient id fordi vi ikke har noen logg inn funksjon hvor vi kan ha forskjellige klienter
+	//men vi regner med at forzasys kommer til å ha dette for kundene sine 
+	const clinet_id = 1;
     //oppretter et poll object
-    let poll = { "title": pollTittel, "poll_description": pollBeskrivelse, "pollSluttDato": pollSluttDato, "options": options }
+    let poll = { "client_id" : clinet_id, "title": pollTittel, "poll_description": pollBeskrivelse, "pollSluttDato": pollSluttDato, "options": options }
     
 	//poster poll objectet til backend
     //Ikke gjort enda. returner info om hvilken poll id den nye pollen har til nettsiden /opprettetPoll
