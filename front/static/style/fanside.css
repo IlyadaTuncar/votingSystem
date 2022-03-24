@@ -1,24 +1,24 @@
 .navbar-custom {
 	background-color: #10253e;
 }
-.root {
-
-	background-color: #10253e;
+.col-md-4 {
+	margin-bottom: 20px;
 }
+
+
+/*
+
 body{
 	background-color: #f5f6fa;
 }
 
-.row{
-	margin-bottom: 10px;
-	margin-left: auto;
+#tittelBoks {
+	width
 }
-.col-sm{
-	margin-bottom: 10px;
-}
+
 #videoBoks {
-	width: 55%;
-	float: left;
+	width: 40%;
+	float: none;
 	position: relative;
 	min-height: 1px;
 }
@@ -34,7 +34,7 @@ body{
 } 
   
 .videoTab {
-	float: inherit;
+	float: right;
 	border: 1px solid #ccc;
 	border-radius: 8px;
 	background-color: #f1f1f1;
@@ -81,7 +81,7 @@ body{
 }
   
 .goal-showcase{
-	  float: inherit;	
+	  float: left;
 	  margin: 30px;
 	  width: 100%;
 	  display: block;
@@ -127,6 +127,6 @@ body{
 	text-align: center;
 }
 
-#overskriftFan{
-	font-size: 25px;
-}
+ */
+
+
