@@ -76,7 +76,7 @@ def db_add_poll_and_options(poll):
 	cur = con.cursor()
 	#execute query on poll table
 
-	vars = ( poll.get('client_id'), poll.get('title'), poll.get('pollBeskrivelse'), poll.get('pollSluttDato'))
+	vars = ( poll.get('client_id'), poll.get('title'), poll.get('poll_description'), poll.get('pollSluttDato'))
 	insert_query = "insert into TBL_POLL (client_id, poll_title, poll_description, sluttdato) values (%s, %s, %s, %s) RETURNING id;"
 	
 	cur.execute(insert_query, vars)
