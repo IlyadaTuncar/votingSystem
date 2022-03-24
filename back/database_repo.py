@@ -7,7 +7,7 @@ def open_con():
 					host = "localhost",
 					database="votesystemdb",
 					user = "postgres",
- 					password = "")
+ 					password = "derfor32")
 	return con
  #get metoder for poll
 
@@ -18,7 +18,7 @@ def format_row_to_poll(row, options):
 def format_row_to_options(rows):
 	options = []
 	for row in rows:
-		option = {'id': row[0],'poll_id':row[1], 'title': row[2], 'link': row[3], 'dato': row[4], 'scorer': row[5], 'scorerlag': row[6], 'motstander': row[7], 'thumbnail': row[8]}
+		option = {'id': row[0],'poll_id':row[1], 'title': row[2], 'video_url': row[3], 'dato': row[4], 'scorer': row[5], 'scorerlag': row[6], 'motstander': row[7], 'thumbnail_url': row[8]}
 		options.append(option)
 	return options
 
@@ -78,7 +78,6 @@ def get_options_for_poll_id(poll_id):
 	cur.close()
 	#close the connection
 	con.close()
-
 	options = format_row_to_options(rows)
 	#return rows
 	return options
@@ -96,7 +95,7 @@ def db_add_poll_and_options(poll):
 	insert_query = "insert into TBL_POLL (client_id, poll_title, poll_description, sluttdato) values (%s, %s, %s, %s) RETURNING id;"
 	
 	cur.execute(insert_query, vars)
-	rows = cur.fetchall()
+	pid = cur.fetchone()
 	#commit the query
 	con.commit()
 	#close the cursor and connection
@@ -104,16 +103,16 @@ def db_add_poll_and_options(poll):
 	con.close()
 
 	for o in poll.get('options'):
-		db_add_opption(poll.get('client_id'), o)
+		db_add_opption(pid, o)
 	
-	return rows
+	return pid
 
 def db_add_opption(poll_id, option):
 	con = open_con()
 	cur = con.cursor()
 	#execute query on poll table
 
-	vars = ( poll_id, option.get('title'), option.get('video_url'), option.get('dato'), option.get('scorer'), option.get('scorerlag'), option.get('motstander'), option.get('thumbnail'))
+	vars = ( poll_id, option.get('title'), option.get('video_url'), option.get('dato'), option.get('scorer'), option.get('scorerlag'), option.get('motstander'), option.get('thumbnail_url'))
 	insert_query = "insert into TBL_OPTION (poll_id, option_title, video_url, dato, scorer, scorerlag, motstander, thumbnail_url) values (%s, %s, %s, %s, %s, %s, %s, %s)"
 	
 	cur.execute(insert_query, vars)
@@ -140,3 +139,24 @@ def db_add_vote(vote):
 	cur.close()
 	con.close()
 	return
+
+
+def get_last_added_pol():
+		#cursor 
+		con = open_con()
+		cur = con.cursor()
+		#execute query on poll table
+		query = f"SELECT * FROM TBL_POLL WHERE id = (SELECT MAX(id) FROM TBL_POLL);"
+		cur.execute(query)
+		row = cur.fetchone()
+		pid = row[0]
+		#close the cursor
+		cur.close()
+		#close the connection
+		con.close()
+
+		options = get_options_for_poll_id(pid)
+		poll = format_row_to_poll(row, options)
+		#return rows
+		return poll
+

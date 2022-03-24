@@ -50,7 +50,7 @@ function formaterOptions(options) {
         table +=
             '<div class="col-md-4">' +
             '<div class="card md-4 box-shadow">' +
-            '<video id ="my-video" class="video-js vjs-big-play-centered card-img-top" controls preload="auto" width="560" height="197" poster=" ' + o.thumbnail +'" data-setup="{}" >' +
+            '<video id ="my-video" class="video-js vjs-big-play-centered card-img-top" controls preload="auto" width="560" height="197" poster=" ' + o.thumbnail_url +'" data-setup="{}" >' +
             '<source src="' + o.video_url + '" type="application/x-mpegURL" />' +
             '<p class="vjs-no-js"> To view this video please enable Javascript, and consider upgrading to a web browser that' +
             '<a href="https://videojs.com/html5-video-support/" target="_blank">suppoerts HTML5 video</a>' +
@@ -62,7 +62,7 @@ function formaterOptions(options) {
             '<p style="font-size: 12px">Dato:' + o.dato + '</p>' +
             '<div class="d-flex justify-content-between align-items-center">' +
             '<div class="btn-group">' +
-            '<button id="stemButton" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit" data-optionid='+o.id+'><strong>Stem på video</strong></button>' +
+            '<button id="stemButton" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
             '</div>' +
             '<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>' +
             '</div>' +
@@ -144,7 +144,6 @@ function createVote() {
 			output=data
         }
 	})
-	console.log(output);
-	return;
+	return
 	
 }
