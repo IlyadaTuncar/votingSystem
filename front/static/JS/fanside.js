@@ -62,7 +62,7 @@ function formaterOptions(options) {
             '<p style="font-size: 12px">Dato:' + o.dato + '</p>' +
             '<div class="d-flex justify-content-between align-items-center">' +
             '<div class="btn-group">' +
-            '<button id="stemButton" class="btn btn-sm btn-secondary" value="' + o.id + '" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
+            '<button data-motstander="' + o.motstander + '" data-scorer="' + o.scorer + '" onclick="formaterVideoBeskrivelse(this.id, this.dataset.scorer, this.dataset.motstander)" id="' + o.id + '" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#myModal" type="submit"><strong>Stem på video</strong></button>' +
             '</div>' +
             '<script src="https://vjs.zencdn.net/7.17.0/video.min.js"></script>' +
             '</div>' +
@@ -74,13 +74,13 @@ function formaterOptions(options) {
     $(".videoTab").html(table)
 }
 
-function formaterVideoBeskrivelse(scorerlag, scorer, motstander,dato){
+function formaterVideoBeskrivelse(oid, scorer, motstander){
 	let table=
        '<div class="beskrivelse">'
-		table += '<h5>Mål ' + scorerlag + '!&nbspScoring av&nbsp' + scorer+ '&nbspmot&nbsp' +motstander + '.</h5>'
-		table += '<h6>Dato: ' + dato + '</h6>'
+		table += '<h5>Scoring av&nbsp' + scorer + '&nbspmot&nbsp' + motstander + '</h5>'
 		table += '</div>'
 	$(".videoBeskrivelse").html(table)
+	$("#opprettStem_button").data("optionid", oid)
 }
 
 
@@ -90,7 +90,6 @@ function getPolls() {
         hentPollTittel(data.title)
         hentPollBeskrivelse(data.poll_description)
         sluttDatoFunksjon(data.pollSluttDato)
-        formaterVideoBeskrivelse(data.dato)
     });
 }
 
@@ -117,7 +116,7 @@ function sjekkMail(mail){
 
 function createVote() {
 	let email = $("#email").val()
-	let option_id = document.getElementById('stemButton').getAttribute('value');
+	let option_id = $("#opprettStem_button").data("optionid");
 	$("#feilMail").hide();
 
 	if(!sjekkMail(email)){
@@ -140,6 +139,7 @@ function createVote() {
         }
 	})
 	if (output == "Stemme er registrert") {
+		$("#myModal").modal('hide');
         return true
     } else {
         return false
