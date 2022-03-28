@@ -91,7 +91,6 @@ function getPolls() {
         hentPollTittel(data.title)
         hentPollBeskrivelse(data.poll_description)
         sluttDatoFunksjon(data.pollSluttDato)
-		console.log(pid)
     });
 }
 
@@ -149,4 +148,15 @@ function createVote() {
         return false
     }
 	
+}
+
+function get_live_votes(){
+	url = '/live_votes/'+pid
+	$.get(url, function(data) {
+		// data innholder et array med json objekter
+			// json objektene i arrayet har nøkklene option_id og vote_count
+				// Det vil si id'en til vidoene og antall stemmer den har
+		
+	});
+	return
 }

@@ -81,6 +81,12 @@ def register_vote():
 	else:
 		return "Kunne ikke registrere stemme"	
 
+
+@app.route('/live_votes/<poll_id>', methods = ['GET'])
+def send_live_votes(poll_id):
+	live_votes = db_get_live_votes_for_poll(poll_id)
+	return jsonify(live_votes)
+
 if __name__ == '__main__':
 	# run!
 	app.run(debug=True)

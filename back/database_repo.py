@@ -168,7 +168,7 @@ def get_last_added_poll():
 		return poll
 
 
-def get_live_votes_for_poll(pid):
+def db_get_live_votes_for_poll(pid):
 	con = open_con()
 	cur = con.cursor()
 	#execute query on poll table
