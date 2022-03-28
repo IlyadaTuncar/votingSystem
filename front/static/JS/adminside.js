@@ -79,8 +79,14 @@ function formaterTitler() {
         table +=
             "<li class='list-group-item flex-column align-items-start'>" +
             "<div class='d-flex w-100 justify-content-between'>" +
-            "<h5 class='mb-1'>Scoring av&nbsp" + a.scorer + "&nbspmot&nbsp" + a.motstander + "</h5>" +
-            "</div>"
+            '<video id ="my-video-modal" class="video-js vjs-big-play-centered" controls preload="auto" width="560" height="197" poster=" ' + a.thumbnail_url +'" data-setup="{}" >' +
+            '<source src="' + a.video_url + '" type="application/x-mpegURL" />' +
+            '<p class="vjs-no-js"> To view this video please enable Javascript, and consider upgrading to a web browser that' +
+            '<a href="https://videojs.com/html5-video-support/" target="_blank">suppoerts HTML5 video</a>' +
+            '</p>' +
+            '</video>' +
+            "<h5 class='mb-1'> Scoring av&nbsp" + a.scorer + "&nbspmot&nbsp" + a.motstander + "</h5>" +
+            "</div>" +
         "</li>"
     }
     table +=
