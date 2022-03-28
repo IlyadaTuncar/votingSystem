@@ -31,10 +31,9 @@ CREATE TABLE TBL_OPTION (
 
 
 CREATE TABLE TBL_VOTE ( 
-	id SERIAL PRIMARY KEY, 
+	id SERIAL PRIMARY KEY,
 	option_id INT,
 	email VARCHAR(60), 
-	
 
 	
 	CONSTRAINT vote_option 

@@ -126,7 +126,7 @@ function createVote() {
 		return
 	}
 
-	let vote ={"option_id": option_id, "email": email}
+	let vote ={"poll_id": pid, "option_id": option_id, "email": email}
 	let output =""
 
 	$.ajax({

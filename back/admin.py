@@ -16,7 +16,7 @@ polls = []
 def get_options():
 	#henter siste poll
 	#dette skal endres i framtiden
-	data = get_last_added_pol()
+	data = get_last_added_poll()
 	return jsonify(data)
 
 @app.route('/get_poll/<id>', methods = ['GET'])
