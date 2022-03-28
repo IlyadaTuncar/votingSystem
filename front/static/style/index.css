@@ -46,6 +46,11 @@
 	font-weight: 700;
 	margin-bottom: 20px;
 }
+#button:hover{
+	background-color: #FFF;
+	border-color: #FFF;
+	color: #000;
+}
 body{
 	background-color: #f5f6fa;
 }
