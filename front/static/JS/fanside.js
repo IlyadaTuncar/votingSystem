@@ -140,8 +140,10 @@ function createVote() {
 	})
 	if (output == "Stemme er registrert") {
 		$("#myModal").modal('hide');
+		alert("Stemmen din ble registrert. Takk for din stemme!");
         return true
     } else {
+		alert("Kunne ikke registrere din stemme. Prøv på nytt!");
         return false
     }
 	

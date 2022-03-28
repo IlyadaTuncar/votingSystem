@@ -55,6 +55,11 @@
 	font-style: normal;
 	font-weight: 700;
 }
+#avstemning_button:hover{
+	background-color: #FFF;
+	border-color: #FFF;
+	color: #000;
+}
 body{
 	background-color: #f5f6fa;
 }
