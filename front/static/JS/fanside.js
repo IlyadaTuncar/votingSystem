@@ -3,7 +3,7 @@ $(document).ready(function() {
 })
 
 // må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
-
+let pid
 
 function openVideo(video_url) {
     var videoElm = videojs("videoPlayer");
@@ -86,10 +86,12 @@ function formaterVideoBeskrivelse(oid, scorer, motstander){
 
 function getPolls() {
     $.get('/get_polls', function(data) {
+		pid = data.id
         formaterOptions(data.options)
         hentPollTittel(data.title)
         hentPollBeskrivelse(data.poll_description)
         sluttDatoFunksjon(data.pollSluttDato)
+		console.log(pid)
     });
 }
 
