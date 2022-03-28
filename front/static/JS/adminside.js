@@ -182,10 +182,10 @@ function validerPollSluttDato(sluttdato) {
     const regexp = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
     const ok = regexp.test(sluttdato);
     if (!ok || (sluttdato = '')) {
-        $("#feilPollSluttDato").html("Polldato må fylles ut.")
+        $("#feilSluttDato").html("Polldato må fylles ut.")
         return false
     } else {
-        $("#feilPollSluttDato").html("");
+        $("#feilSluttDato").html("");
         return true;
     }
 }
