@@ -3,7 +3,7 @@ $(document).ready(function() {
 })
 
 // må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
-
+let pid
 
 function openVideo(video_url) {
     var videoElm = videojs("videoPlayer");
@@ -86,6 +86,7 @@ function formaterVideoBeskrivelse(oid, scorer, motstander){
 
 function getPolls() {
     $.get('/get_polls', function(data) {
+		pid = data.id
         formaterOptions(data.options)
         hentPollTittel(data.title)
         hentPollBeskrivelse(data.poll_description)
@@ -124,7 +125,7 @@ function createVote() {
 		return
 	}
 
-	let vote ={"option_id": option_id, "email": email}
+	let vote ={"poll_id": pid, "option_id": option_id, "email": email}
 	let output =""
 
 	$.ajax({
@@ -147,4 +148,15 @@ function createVote() {
         return false
     }
 	
+}
+
+function get_live_votes(){
+	url = '/live_votes/'+pid
+	$.get(url, function(data) {
+		// data innholder et array med json objekter
+			// json objektene i arrayet har nøkklene option_id og vote_count
+				// Det vil si id'en til vidoene og antall stemmer den har
+		
+	});
+	return
 }
