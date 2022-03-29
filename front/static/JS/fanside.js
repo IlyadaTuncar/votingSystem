@@ -163,7 +163,7 @@ function get_live_votes(){
 		// data innholder et array med json objekter
 			// json objektene i arrayet har nøkklene option_id og vote_count
 				// Det vil si id'en til vidoene og antall stemmer den har
-		show_live_votes(data);
+		show_live_votes_modal(data);
 	});
 	return
 }
@@ -194,12 +194,36 @@ function show_live_votes_modal(live_votes){
 	let labels = []
 	let vote_counts =[]
 
-	$("#statisticsModal")
 	for(lv of live_votes){
 		labels.push(lv.option_id)
 		vote_counts.push(lv.vote_count)
-
 	}
+
+	new Chart(document.getElementById("horizontalBar"), {
+		"type": "horizontalBar",
+		"data": {
+		  "labels": labels,
+		  "datasets": [{
+			"label": "My First Dataset",
+			"data": vote_counts,
+			"fill": false,
+			"backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
+			  "rgba(255, 205, 86, 0.2)"
+			],
+			"borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)"],
+			"borderWidth": 1
+		  }]
+		},
+		"options": {
+		  "scales": {
+			"xAxes": [{
+			  "ticks": {
+				"beginAtZero": true
+			  }
+			}]
+		  }
+		}
+	  });
 
 	$("#statisticsModal").modal()
 }
