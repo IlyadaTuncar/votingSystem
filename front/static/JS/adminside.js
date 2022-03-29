@@ -160,7 +160,7 @@ async function getapi() {
 
 
 function validerPollTittel(tittel) {
-    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,100}$/;
+    const regexp = /^[a-zA-ZæøåÆØÅ.0-9 \-]{2,100}$/;
     const ok = regexp.test(tittel);
     if (!ok || (tittel = '')) {
         $("#feilPollTittel").html("Poll tittel må fylles ut med minst 2 bokstaver.")
@@ -172,7 +172,7 @@ function validerPollTittel(tittel) {
 }
 
 function validerPollBeskrivelse(beskrivelse) {
-    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,500}$/;
+    const regexp = /^[a-zA-ZæøåÆØÅ.0-9 \-]{2,500}$/;
     const ok = regexp.test(beskrivelse);
     if (!ok || (beskrivelse = '')) {
         $("#feilBeskrivelse").html("Poll beskrivelse må fylles ut med minst 2 bokstaver.")
