@@ -16,7 +16,7 @@ polls = []
 def get_options():
 	#henter siste poll
 	#dette skal endres i framtiden
-	data = get_last_added_pol()
+	data = get_last_added_poll()
 	return jsonify(data)
 
 @app.route('/get_poll/<id>', methods = ['GET'])
@@ -80,6 +80,12 @@ def register_vote():
 		return jsonify("Stemme er registrert")
 	else:
 		return "Kunne ikke registrere stemme"	
+
+
+@app.route('/live_votes/<poll_id>', methods = ['GET'])
+def send_live_votes(poll_id):
+	live_votes = db_get_live_votes_for_poll(poll_id)
+	return jsonify(live_votes)
 
 if __name__ == '__main__':
 	# run!

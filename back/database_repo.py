@@ -22,6 +22,13 @@ def format_row_to_options(rows):
 		options.append(option)
 	return options
 
+def format_row_to_live_votes(rows):
+	live_votes = []
+	for row in rows:
+		option_vote_count = {'option_id': row[0], 'vote_count': row[1]}
+		live_votes.append(option_vote_count)
+	return live_votes
+
 def get_all_polls():
 		#cursor 
 		con = open_con()
@@ -141,7 +148,7 @@ def db_add_vote(vote):
 	return
 
 
-def get_last_added_pol():
+def get_last_added_poll():
 		#cursor 
 		con = open_con()
 		cur = con.cursor()
@@ -160,3 +167,18 @@ def get_last_added_pol():
 		#return rows
 		return poll
 
+
+def db_get_live_votes_for_poll(pid):
+	con = open_con()
+	cur = con.cursor()
+	#execute query on poll table
+	query = f"select tbl_vote.option_id, count(tbl_vote.option_id) as number_of_votes from tbl_vote inner join tbl_option on tbl_option.id = tbl_vote.option_id where tbl_option.poll_id = {pid} group by tbl_vote.option_id;"
+	cur.execute(query)
+	rows = cur.fetchall()
+	#close the cursor
+	cur.close()
+	#close the connection
+	con.close()
+	live_votes = format_row_to_live_votes(rows)
+	#return rows
+	return live_votes
