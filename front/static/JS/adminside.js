@@ -79,8 +79,9 @@ function formaterTitler() {
         table +=
             "<li class='list-group-item flex-column align-items-start'>" +
             "<div class='d-flex w-100 justify-content-between'>" +
-            "<h5 class='mb-1'>Scoring av&nbsp" + a.scorer + "&nbspmot&nbsp" + a.motstander + "</h5>" +
-            "</div>"
+            "<img class='img-thumbnail' width='200' heigth = '200' src="+ a.thumbnail_url + ">" +
+            "<h5 class='mb-1'> Scoring av&nbsp" + a.scorer + "&nbspmot&nbsp" + a.motstander + "</h5>" +
+            "</div>" +
         "</li>"
     }
     table +=
@@ -154,7 +155,7 @@ async function getapi() {
 
 
 function validerPollTittel(tittel) {
-    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,100}$/;
+    const regexp = /^[a-zA-ZæøåÆØÅ.0-9 \-]{2,100}$/;
     const ok = regexp.test(tittel);
     if (!ok || (tittel = '')) {
         $("#feilPollTittel").html("Poll tittel må fylles ut med minst 2 bokstaver.")
@@ -166,7 +167,7 @@ function validerPollTittel(tittel) {
 }
 
 function validerPollBeskrivelse(beskrivelse) {
-    const regexp = /^[a-zA-ZæøåÆØÅ. \-]{2,500}$/;
+    const regexp = /^[a-zA-ZæøåÆØÅ.0-9 \-]{2,500}$/;
     const ok = regexp.test(beskrivelse);
     if (!ok || (beskrivelse = '')) {
         $("#feilBeskrivelse").html("Poll beskrivelse må fylles ut med minst 2 bokstaver.")
