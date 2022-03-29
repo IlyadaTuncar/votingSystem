@@ -59,6 +59,12 @@ function formaterOptions(options) {
             '<div class="card-body">' +
             '<h6 id="buttonTitles">Scoring av&nbsp' + o.scorer + '&nbspVS&nbsp' + o.motstander + '</h6>' +
             '<br/>' +
+			'<div id="vote-text' + o.id +'">'+
+			'</div>'+
+			'<br/>' +
+			'<div id="vote-graph' + o.id + '" style="width:80%; height:8px; background-color:#f1f1f1; display:none;">' +
+			'</div>' + 
+			'<br/>' +
             '<p style="font-size: 12px">Dato:' + o.dato + '</p>' +
             '<div class="d-flex justify-content-between align-items-center">' +
             '<div class="btn-group">' +
@@ -142,6 +148,7 @@ function createVote() {
 	if (output == "Stemme er registrert") {
 		$("#myModal").modal('hide');
 		alert("Stemmen din ble registrert. Takk for din stemme!");
+		get_live_votes()
         return true
     } else {
 		alert("Kunne ikke registrere din stemme. Prøv på nytt!");
@@ -156,7 +163,27 @@ function get_live_votes(){
 		// data innholder et array med json objekter
 			// json objektene i arrayet har nøkklene option_id og vote_count
 				// Det vil si id'en til vidoene og antall stemmer den har
-		
+		show_live_votes(data);
 	});
 	return
+}
+
+function show_live_votes(live_votes){
+	let total_votes = 0
+	for(lv of live_votes){
+		total_votes += lv.vote_count
+	}
+
+	for(lv of live_votes){
+		share_of_votes=lv.vote_count/total_votes*100
+
+		let htmlgraph = '#vote-graph' + lv.option_id
+		let htmltext = '#vote-text' + lv.option_id
+
+		$(htmltext).text(""+lv.vote_count+" har stemt for dette målet")
+
+		$(htmlgraph).html('<div style="width:'+share_of_votes+'%;background-color: #10253e;height:100%;"></div>')
+		$(htmlgraph).show()
+	}
+	
 }
