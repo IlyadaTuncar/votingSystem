@@ -79,10 +79,10 @@ function formaterTitler() {
         table +=
             "<li class='list-group-item flex-column align-items-start'>" +
             "<div class='d-flex w-100 justify-content-between'>" +
-            "<img class='img-thumbnail' width='200' heigth = '200' src="+ a.thumbnail_url + ">" +
+            "<img class='img-thumbnail' width='200' heigth = '200' src=" + a.thumbnail_url + ">" +
             "<h5 class='mb-1'> Scoring av&nbsp" + a.scorer + "&nbspmot&nbsp" + a.motstander + "</h5>" +
             "</div>" +
-        "</li>"
+            "</li>"
     }
     table +=
         "</div>"
@@ -180,7 +180,7 @@ function validerPollBeskrivelse(beskrivelse) {
 
 function validerPollSluttDato(sluttdato) {
 
-    const regexp = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
+    const regexp = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
     const ok = regexp.test(sluttdato);
     if (!ok || (sluttdato = '')) {
         $("#feilSluttDato").html("Polldato må fylles ut.")
