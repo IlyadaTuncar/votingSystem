@@ -11,6 +11,10 @@ app = Flask(__name__,
 			static_folder='../front/static',)
 
 polls = []
+@app.route('/get_all_polls', methods = ['GET'])
+def get_polls():
+	data = get_all_polls()
+	return jsonify(data)
 
 @app.route('/get_polls', methods = ['GET'])
 def get_options():
