@@ -59,7 +59,7 @@ function formaterOptions(options) {
             '<div class="card-body">' +
             '<h6 id="buttonTitles">Scoring av&nbsp' + o.scorer + '&nbspVS&nbsp' + o.motstander + '</h6>' +
             '<br/>' +
-			'<div id="vote-text' + o.id +'">'+
+			'<div id="vote-text' + o.id +'" style="display:none;">'+
 			'</div>'+
 			'<br/>' +
 			'<div id="vote-graph' + o.id + '" style="width:80%; height:8px; background-color:#f1f1f1; display:none;">' +
@@ -181,9 +181,25 @@ function show_live_votes(live_votes){
 		let htmltext = '#vote-text' + lv.option_id
 
 		$(htmltext).text(""+lv.vote_count+" har stemt for dette målet")
+		$(htmlgraph).show()
 
 		$(htmlgraph).html('<div style="width:'+share_of_votes+'%;background-color: #10253e;height:100%;"></div>')
 		$(htmlgraph).show()
 	}
 	
+}
+
+
+function show_live_votes_modal(live_votes){
+	let labels = []
+	let vote_counts =[]
+
+	$("#statisticsModal")
+	for(lv of live_votes){
+		labels.push(lv.option_id)
+		vote_counts.push(lv.vote_count)
+
+	}
+
+	$("#statisticsModal").modal()
 }
