@@ -1,6 +1,7 @@
 #!flask/bin/python
 from asyncore import poll
 import sys
+from this import d
 from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
 import json
 from database_repo import *
@@ -10,7 +11,6 @@ app = Flask(__name__,
 			static_url_path='',
 			static_folder='../front/static',)
 
-polls = []
 @app.route('/get_all_polls', methods = ['GET'])
 def get_polls():
 	data = get_all_polls()
@@ -26,8 +26,7 @@ def get_options():
 @app.route('/get_poll/<id>', methods = ['GET'])
 def get_poll(id):
 	try:
-		indeks = int(id)
-		data = polls[indeks]
+		data = get_poll_by_id(id)
 		return jsonify(data)
 	except:
 		return "Poll not found"
@@ -39,10 +38,7 @@ def serve_opprettet_poll():
 @app.route('/create_poll', methods = ['POST'])
 def create_poll():
 	request_data = request.json
-	polls.append(request_data)
-
 	db_add_poll_and_options(request_data)
-	#Etter vi har databasen kan vi sjekke om avstemmingen ble lagt til ordentlig
 	success = True
 	if(success):
 		return jsonify("Poll er opprettet")
@@ -61,9 +57,9 @@ def serve_admin():
 	return render_template('adminside.html')
 
 
-@app.route('/fan', methods = ['GET', 'POST'])
-def serve_fan():
-	return render_template('fanside.html')
+@app.route('/fan/<int:id>', methods = ['GET', 'POST'])
+def serve_fan(id):
+	return render_template('fanside.html', pid=id)
 
 @app.route('/avsluttetPoll', methods = ['GET', 'POST'])
 def serve_avsluttetPoll():
