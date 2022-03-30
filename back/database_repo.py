@@ -8,7 +8,7 @@ def open_con():
 					host = "localhost",
 					database="votesystemdb",
 					user = "postgres",
- 					password = "")
+ 					password = "admin")
 	return con
  #get metoder for poll
 

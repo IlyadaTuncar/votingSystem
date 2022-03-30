@@ -1,11 +1,12 @@
 .navbar-custom {
-	background-color: #10253e;
-}
-.col-md-4 {
-	margin-bottom: 20px;
+    background-color: #10253e;
 }
 
-.btn.btn-sm.btn-secondary{
+.col-md-4 {
+    margin-bottom: 20px;
+}
+
+.btn.btn-sm.btn-secondary {
     font-size: 15px!important;
     height: 40px;
     text-transform: uppercase;
@@ -18,11 +19,19 @@
     font-style: normal;
     font-weight: 800;
 }
-.btn.btn-sm.btn-secondary:hover{
-	background-color: #FFF;
-	border-color: #FFF;
-	color: #000;
+
+.btn.btn-sm.btn-secondary:hover {
+    background-color: #FFF;
+    border-color: #FFF;
+    color: #000;
 }
+
+@media (min-width: 1200px) {
+    .modal-lg {
+        width: 1080px;
+    }
+}
+
 
 /*
 
@@ -146,5 +155,3 @@ body{
 }
 
  */
-
-
