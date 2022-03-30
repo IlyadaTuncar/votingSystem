@@ -150,18 +150,21 @@ function createVote() {
 			output=data
         }
 	})
-	if (output == "Stemme er registrert") {
+	if (output == 'Success') {
 		$("#myModal").modal('hide');
 		alert("Stemmen din ble registrert. Takk for din stemme!");
 		create_vote_graphs(get_live_votes())
 		show_vote_graphs()
 		show_live_votes_modal()
-		return true
-    } else {
-		alert("Kunne ikke registrere din stemme. Prøv på nytt!");
-        return false
+		return
     }
-	
+	if (output == 'Existing mail'){
+		$("#myModal").modal('hide');
+		alert('Denne mail addressen har allerede stemt');
+        return
+    }
+	alert("Kunne ikke registrere din stemme. Prøv på nytt!");
+	return
 }
 
 function get_live_votes(){

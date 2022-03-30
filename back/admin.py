@@ -74,13 +74,7 @@ def register_vote():
 	# serve index template
  	# legg til i riktig vote
 	request_data = request.json
-	db_add_vote(request_data)
-	success = True
-	if(success):
-		return jsonify("Stemme er registrert")
-	else:
-		return "Kunne ikke registrere stemme"	
-
+	return jsonify(db_add_vote(request_data))
 
 @app.route('/live_votes/<poll_id>', methods = ['GET'])
 def send_live_votes(poll_id):
