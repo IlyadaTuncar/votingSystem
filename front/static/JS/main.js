@@ -6,8 +6,8 @@ function openAdmin() {
 	window.location.href = '/admin'
 }
 
-function openKunde() {
-	window.location.href = '/fan/{pid}'
+function openOversikt() {
+	window.location.href = '/opprettetPoll'
 }
 
 //Funksjon for å hente polls, og legge det inn i en tabell sånn at admin får en oversikt over eksisterende poll.
