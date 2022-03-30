@@ -7,7 +7,7 @@ function openAdmin() {
 }
 
 function openKunde() {
-	window.location.href = '/fan'
+	window.location.href = '/fan/{pid}'
 }
 
 //Funksjon for å hente polls, og legge det inn i en tabell sånn at admin får en oversikt over eksisterende poll.
@@ -25,10 +25,11 @@ function formaterPolls(polls) {
 		"</thead>" + 
 		"<tbody>"
 	for (p of polls) {
+		let url = "http://127.0.0.1:5000/fan/"+p[0];
 		table += "<tr>" + 
 			"<td>" + p[2] + "</td>" +
 			"<td>" + p[4] + "</td>" +
-			"<td><a href='http://127.0.0.1:5000/fan'>Gå til poll</a></td>" +
+			"<td><a href='" +url+ "'>Gå til poll</a></td>" +
 			"</tr>"
 	}
 	table += "</tbody>" +
