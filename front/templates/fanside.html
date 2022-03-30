@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+	<script>
+		var pid = '{{pid}}';
+	</script>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -21,6 +24,7 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../style/fanside.css" />
     <link rel="shortcut icon" href="#" />
     <link href="https://vjs.zencdn.net/7.17.0/video-js.css" rel="stylesheet" />
@@ -98,8 +102,28 @@
               </button>
             </div>
           </div>
-        </div>
+        </div>	
       </div>
+		<!-- Modal -->
+
+		<div class="modal fade" id="statisticsModal" role="dialog">
+			<div class="modal-dialog">
+          	<!-- Modal content-->
+        		<div class="modal-content">
+            		<div class="modal-header">
+            		</div>
+					<div class="modal-body">
+						<h6>Stemme resultater så langt</h6>
+						<canvas id="vote-chart"></canvas>
+            		</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">
+						close
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
     </main>
   </body>
 </html>
