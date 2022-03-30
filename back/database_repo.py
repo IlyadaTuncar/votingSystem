@@ -1,4 +1,5 @@
 from http import client
+from pickle import TRUE
 from select import select
 from turtle import title
 import psycopg2
@@ -136,6 +137,12 @@ def db_add_vote(vote):
 	cur = con.cursor()
 	#execute query on poll table
 
+	select_mail_query = f"select count(tbl_vote.email) from tbl_vote inner join tbl_option on tbl_option.id = tbl_vote.option_id where tbl_option.poll_id = {vote.get('poll_id')} and tbl_vote.email = '{vote.get('email')}';"
+	cur.execute(select_mail_query)
+	row = cur.fetchone()
+	if (row[0]>0):
+		return 'Existing mail'
+
 	vars = ( vote.get('option_id'), vote.get('email'))
 	insert_query = "insert into TBL_VOTE (option_id, email) values (%s, %s)"
 	
@@ -145,7 +152,7 @@ def db_add_vote(vote):
 	#close the cursor and connection
 	cur.close()
 	con.close()
-	return
+	return 'Success'
 
 
 def get_last_added_poll():
