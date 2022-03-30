@@ -1,9 +1,8 @@
 $(document).ready(function() {
-    getPolls()
+    getPoll(pid)
 })
 
 // må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
-let pid
 
 function openVideo(video_url) {
     var videoElm = videojs("videoPlayer");
@@ -59,10 +58,10 @@ function formaterOptions(options) {
             '<div class="card-body">' +
             '<h6 id="buttonTitles">Scoring av&nbsp' + o.scorer + '&nbspVS&nbsp' + o.motstander + '</h6>' +
             '<br/>' +
-			'<div id="vote-text' + o.id +'" style="display:none;">'+
+			'<div class="vote-text" id="vote-text' + o.id +'" style="display:none;">'+
 			'</div>'+
 			'<br/>' +
-			'<div id="vote-graph' + o.id + '" style="width:80%; height:8px; background-color:#f1f1f1; display:none;">' +
+			'<div class="vote-graph" id="vote-graph' + o.id + '" style="width:80%; height:8px; background-color:#f1f1f1; display:none;">' +
 			'</div>' + 
 			'<br/>' +
             '<p style="font-size: 12px">Dato:' + o.dato + '</p>' +
@@ -89,7 +88,7 @@ function formaterVideoBeskrivelse(oid, scorer, motstander){
 	$("#opprettStem_button").data("optionid", oid)
 }
 
-
+/*
 function getPolls() {
     $.get('/get_polls', function(data) {
 		pid = data.id
@@ -97,13 +96,19 @@ function getPolls() {
         hentPollTittel(data.title)
         hentPollBeskrivelse(data.poll_description)
         sluttDatoFunksjon(data.pollSluttDato)
+		create_chart(data.options, get_live_votes())
     });
 }
+*/
 
 function getPoll(id) {
     url = '/get_poll/' + id
     $.get(url, function(data) {
         formaterOptions(data.options)
+		hentPollTittel(data.title)
+        hentPollBeskrivelse(data.poll_description)
+        sluttDatoFunksjon(data.pollSluttDato)
+		create_chart(data.options, get_live_votes())
     });
 }
 
@@ -148,8 +153,10 @@ function createVote() {
 	if (output == "Stemme er registrert") {
 		$("#myModal").modal('hide');
 		alert("Stemmen din ble registrert. Takk for din stemme!");
-		get_live_votes()
-        return true
+		create_vote_graphs(get_live_votes())
+		show_vote_graphs()
+		show_live_votes_modal()
+		return true
     } else {
 		alert("Kunne ikke registrere din stemme. Prøv på nytt!");
         return false
@@ -158,17 +165,28 @@ function createVote() {
 }
 
 function get_live_votes(){
+	let live_votes = []
 	url = '/live_votes/'+pid
-	$.get(url, function(data) {
-		// data innholder et array med json objekter
-			// json objektene i arrayet har nøkklene option_id og vote_count
-				// Det vil si id'en til vidoene og antall stemmer den har
-		show_live_votes_modal(data);
+	$.ajax({
+		url: url,
+		method: "GET",
+		async: false,
+		success: function(data){
+			// data innholder et array med json objekter
+				// json objektene i arrayet har nøkklene option_id og vote_count
+					// Det vil si id'en til vidoene og antall stemmer den har
+			live_votes = data
+		}
 	});
-	return
+	return live_votes
 }
 
-function show_live_votes(live_votes){
+function show_vote_graphs(){
+	$(".vote-text").show()
+	$(".vote-graph").show()
+}
+
+function create_vote_graphs(live_votes){
 	let total_votes = 0
 	for(lv of live_votes){
 		total_votes += lv.vote_count
@@ -181,49 +199,37 @@ function show_live_votes(live_votes){
 		let htmltext = '#vote-text' + lv.option_id
 
 		$(htmltext).text(""+lv.vote_count+" har stemt for dette målet")
-		$(htmlgraph).show()
-
 		$(htmlgraph).html('<div style="width:'+share_of_votes+'%;background-color: #10253e;height:100%;"></div>')
-		$(htmlgraph).show()
 	}
-	
+}
+
+function create_chart(options, live_votes){
+	let data = []
+	let labels = []
+	for(o of options) {
+		labels.push(o.title)
+	}
+	for(lv of live_votes) {
+		data.push(lv.vote_count)
+	}
+	let votechart = document.getElementById("vote-chart");
+	let vc = new Chart(votechart, {
+		type: 'bar',
+		data: {
+			labels: labels,
+			datasets: [{
+			label: 'antall stemmer',
+			data: data,
+			borderWidth: 1
+			}]
+		},
+		options: {}
+	});
+
+	return vc
 }
 
 
-function show_live_votes_modal(live_votes){
-	let labels = []
-	let vote_counts =[]
-
-	for(lv of live_votes){
-		labels.push(lv.option_id)
-		vote_counts.push(lv.vote_count)
-	}
-
-	new Chart(document.getElementById("horizontalBar"), {
-		"type": "horizontalBar",
-		"data": {
-		  "labels": labels,
-		  "datasets": [{
-			"label": "My First Dataset",
-			"data": vote_counts,
-			"fill": false,
-			"backgroundColor": ["rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)",
-			  "rgba(255, 205, 86, 0.2)"
-			],
-			"borderColor": ["rgb(255, 99, 132)", "rgb(255, 159, 64)"],
-			"borderWidth": 1
-		  }]
-		},
-		"options": {
-		  "scales": {
-			"xAxes": [{
-			  "ticks": {
-				"beginAtZero": true
-			  }
-			}]
-		  }
-		}
-	  });
-
-	$("#statisticsModal").modal()
+function show_live_votes_modal(){
+	$("#statisticsModal").modal();
 }
