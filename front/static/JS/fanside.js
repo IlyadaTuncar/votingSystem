@@ -114,7 +114,7 @@ function getPoll(id) {
 
 //utvid mail sjekken så den fungerer bedre -- Lagd funskjonen. Kan lage flere om dette
 function sjekkMail(mail){
-    const regexp = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
+    const regexp = /^[a-z0-9.]+@[a-z]+\.[a-z]{2,3}$/;
     const ok = regexp.test(mail);
     if (!ok){
         $("#feilMail").html("Feil format på email. vennligst legg til riktig email")
