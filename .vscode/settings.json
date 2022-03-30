@@ -6,7 +6,7 @@
 			"port": 5432,
 			"askForPassword": true,
 			"driver": "PostgreSQL",
-			"database": "polldb",
+			"database": "votesystemdb",
 			"name": "postgres",
 			"username": "postgres"
 		}
