@@ -11,7 +11,10 @@ $(document).ready(function() {
             for (cb of markedCheckboxes) {
                 //per nå legger vi bare til video linken, men senere skal vi legge til et helt option object
                 //et option object inkluderer tittel på mål, tekst beskrivelse, og video link
-                options.push(createOption(cb.dataset.title, cb.dataset.vidlink, cb.dataset.dato, cb.dataset.scorer, cb.dataset.scorerlag, cb.dataset.motstander, cb.dataset.thumbnail_url))
+
+				//lagrer tittel som en tittel vi kan bruke
+				let title = cb.dataset.scorer+" mot "+cb.dataset.motstander
+                options.push(createOption(title, cb.dataset.vidlink, cb.dataset.dato, cb.dataset.scorer, cb.dataset.scorerlag, cb.dataset.motstander, cb.dataset.thumbnail_url))
             }
             formaterTitler()
             $("#myModal").modal();
