@@ -1,5 +1,4 @@
 from http import client
-from pickle import TRUE
 from select import select
 from turtle import title
 import psycopg2
@@ -8,7 +7,7 @@ def open_con():
 					host = "localhost",
 					database="votesystemdb",
 					user = "postgres",
- 					password = "admin")
+ 					password = "derfor32")
 	return con
  #get metoder for poll
 
@@ -26,11 +25,12 @@ def format_row_to_options(rows):
 def format_row_to_live_votes(rows):
 	live_votes = []
 	for row in rows:
-		option_vote_count = {'option_id': row[0], 'vote_count': row[1]}
+		option_vote_count = {'option_id': row[0],'title':row[1],'vote_count': row[2]}
 		live_votes.append(option_vote_count)
 	return live_votes
 
-def get_all_polls():
+def db_get_all_polls():
+	try:
 		#cursor 
 		con = open_con()
 		cur = con.cursor()
@@ -43,8 +43,11 @@ def get_all_polls():
 		con.close()
 		#return rows
 		return rows
+	except: 
+		return 'Fail'
 
-def get_poll_by_id(pid):
+def db_get_poll_by_id(pid):
+	try:
 		#cursor 
 		con = open_con()
 		cur = con.cursor()
@@ -57,24 +60,15 @@ def get_poll_by_id(pid):
 		#close the connection
 		con.close()
 
-		options = get_options_for_poll_id(pid)
+		options = db_get_options_for_poll_id(pid)
 		poll = format_row_to_poll(row, options)
 		#return rows
 		return poll
+	except:
+		return 'Fail'
 
- #get metoder for option
-def get_all_options():
-		#cursor 
-		con = open_con()
-		cur = con.cursor()
-		cur.execute("select * from TBL_OPTION")
-		rows = cur.fetchall()
-
-		cur.close()
-		con.close()
-		return rows
-
-def get_options_for_poll_id(poll_id):
+#håndter feilmelding f.eks hvis poll_id ikke er et tall
+def db_get_options_for_poll_id(poll_id):
 	#cursor 
 	con = open_con()
 	cur = con.cursor()
@@ -92,29 +86,37 @@ def get_options_for_poll_id(poll_id):
 
 
 ###########################
-#håndter feilmeldinger så programmet ikke krasjenr
+#håndter feilmeldinger så programmet ikke krasjer
 ###########################
 def db_add_poll_and_options(poll):
-	con = open_con()
-	cur = con.cursor()
-	#execute query on poll table
+	try:
+		con = open_con()
+		cur = con.cursor()
+		#execute query on poll table
 
-	vars = ( poll.get('client_id'), poll.get('title'), poll.get('poll_description'), poll.get('pollSluttDato'))
-	insert_query = "insert into TBL_POLL (client_id, poll_title, poll_description, sluttdato) values (%s, %s, %s, %s) RETURNING id;"
-	
-	cur.execute(insert_query, vars)
-	pid = cur.fetchone()
-	#commit the query
-	con.commit()
-	#close the cursor and connection
-	cur.close()
-	con.close()
+		vars = ( poll.get('client_id'), poll.get('title'), poll.get('poll_description'), poll.get('pollSluttDato'))
+		insert_query = "insert into TBL_POLL (client_id, poll_title, poll_description, sluttdato) values (%s, %s, %s, %s) RETURNING id;"
+		
+		cur.execute(insert_query, vars)
+		pid = cur.fetchone()
+		#commit the query
+		con.commit()
+		#close the cursor and connection
+		cur.close()
+		con.close()
 
-	for o in poll.get('options'):
-		db_add_opption(pid, o)
-	
-	return pid
+		### Hvis man av en eller annen grunn ikke får lagt inn options med løkken under
+		### så bør poll raden som blir lagret over slettes
+		### , men jeg ser ikke hvordan det skal bli tilfelle.
+		### Siden brukeren ikke har mulighet til å tukle med dataene til options
+		for o in poll.get('options'):
+			db_add_opption(pid, o)
+		
+		return 'Success'
+	except:
+		return 'Fail'
 
+### Hvis denne metoden feiler blir det håndert i db_add_poll
 def db_add_opption(poll_id, option):
 	con = open_con()
 	cur = con.cursor()
@@ -133,29 +135,34 @@ def db_add_opption(poll_id, option):
 
 
 def db_add_vote(vote):
-	con = open_con()
-	cur = con.cursor()
-	#execute query on poll table
+	try:
+		con = open_con()
+		cur = con.cursor()
+		#execute query on poll table
 
-	select_mail_query = f"select count(tbl_vote.email) from tbl_vote inner join tbl_option on tbl_option.id = tbl_vote.option_id where tbl_option.poll_id = {vote.get('poll_id')} and tbl_vote.email = '{vote.get('email')}';"
-	cur.execute(select_mail_query)
-	row = cur.fetchone()
-	if (row[0]>0):
+		select_mail_query = f"select count(tbl_vote.email) from tbl_vote inner join tbl_option on tbl_option.id = tbl_vote.option_id where tbl_option.poll_id = {vote.get('poll_id')} and tbl_vote.email = '{vote.get('email')}';"
+		cur.execute(select_mail_query)
+		row = cur.fetchone()
+		if (row[0]>0):
+			raise ValueError
+
+		vars = ( vote.get('option_id'), vote.get('email'))
+		insert_query = "insert into TBL_VOTE (option_id, email) values (%s, %s)"
+		
+		cur.execute(insert_query, vars)
+		#commit the query
+		con.commit()
+		#close the cursor and connection
+		cur.close()
+		con.close()
+		return 'Success'
+	except ValueError:
 		return 'Existing mail'
+	except:
+		return 'Fail'
 
-	vars = ( vote.get('option_id'), vote.get('email'))
-	insert_query = "insert into TBL_VOTE (option_id, email) values (%s, %s)"
-	
-	cur.execute(insert_query, vars)
-	#commit the query
-	con.commit()
-	#close the cursor and connection
-	cur.close()
-	con.close()
-	return 'Success'
-
-
-def get_last_added_poll():
+### denne metoden kan slettes og trenger derfor ikke feil håndtering
+def db_get_last_added_poll():
 		#cursor 
 		con = open_con()
 		cur = con.cursor()
@@ -169,23 +176,26 @@ def get_last_added_poll():
 		#close the connection
 		con.close()
 
-		options = get_options_for_poll_id(pid)
+		options = db_get_options_for_poll_id(pid)
 		poll = format_row_to_poll(row, options)
 		#return rows
 		return poll
 
 
 def db_get_live_votes_for_poll(pid):
-	con = open_con()
-	cur = con.cursor()
-	#execute query on poll table
-	query = f"select tbl_vote.option_id, count(tbl_vote.option_id) as number_of_votes from tbl_vote inner join tbl_option on tbl_option.id = tbl_vote.option_id where tbl_option.poll_id = {pid} group by tbl_vote.option_id;"
-	cur.execute(query)
-	rows = cur.fetchall()
-	#close the cursor
-	cur.close()
-	#close the connection
-	con.close()
-	live_votes = format_row_to_live_votes(rows)
-	#return rows
-	return live_votes
+	try:
+		con = open_con()
+		cur = con.cursor()
+		#execute query on poll table
+		query = f"SELECT v1.option_id, tbl_option.option_title, number_of_votes FROM ( SELECT tbl_vote.option_id, count(tbl_vote.option_id) as number_of_votes FROM tbl_vote GROUP BY tbl_vote.option_id ) as v1 inner join tbl_option on tbl_option.id = v1.option_id where tbl_option.poll_id = {pid};"
+		cur.execute(query)
+		rows = cur.fetchall()
+		#close the cursor
+		cur.close()
+		#close the connection
+		con.close()
+		live_votes = format_row_to_live_votes(rows)
+		#return rows
+		return live_votes
+	except:
+		return 'Fail'

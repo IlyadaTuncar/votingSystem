@@ -108,7 +108,7 @@ function getPoll(id) {
         hentPollTittel(data.title)
         hentPollBeskrivelse(data.poll_description)
         sluttDatoFunksjon(data.pollSluttDato)
-        create_chart(data.options, get_live_votes())
+        //create_chart(data.options, get_live_votes())
     });
 }
 
@@ -136,8 +136,7 @@ function createVote() {
     }
 
     let vote = { "poll_id": pid, "option_id": option_id, "email": email }
-    let output = ""
-
+	/////////// hvis dette funker trenger ikke metoden å være asynce:false lenger
     $.ajax({
         url: '/newvote',
         method: "POST",
@@ -146,23 +145,19 @@ function createVote() {
         dataType: "json",
         async: false,
         success: function(data) {
-            output = data
-        }
+			$("#myModal").modal('hide');
+			alert(data);
+			livevotes = get_live_votes()
+			create_vote_graphs(livevotes)
+			show_vote_graphs()
+			create_chart(livevotes)
+			show_live_votes_modal()
+		},
+		error: function (request) {
+			$("#myModal").modal('hide');
+			alert(request.responseText);
+		}
     })
-    if (output == 'Success') {
-        $("#myModal").modal('hide');
-        alert("Stemmen din ble registrert. Takk for din stemme!");
-        create_vote_graphs(get_live_votes())
-        show_vote_graphs()
-        show_live_votes_modal()
-        return
-    }
-    if (output == 'Existing mail') {
-        $("#myModal").modal('hide');
-        alert('Denne mail addressen har allerede stemt');
-        return
-    }
-    alert("Kunne ikke registrere din stemme. Prøv på nytt!");
     return
 }
 
@@ -179,6 +174,7 @@ function get_live_votes() {
             // Det vil si id'en til vidoene og antall stemmer den har
             live_votes = data
         }
+		// trenger ikke noe error function, live votes er et tomt array
     });
     return live_votes
 }
@@ -205,17 +201,26 @@ function create_vote_graphs(live_votes) {
     }
 }
 
-function create_chart(options, live_votes) {
+function create_chart(live_votes) {
+	if(live_votes.length < 1){
+		return
+	}
     let data = []
     let labels = []
-    for (o of options) {
-        labels.push(o.title)
-    }
     for (lv of live_votes) {
         data.push(lv.vote_count)
+		labels.push(lv.title)
     }
-    let votechart = document.getElementById("vote-chart");
-    let vc = new Chart(votechart, {
+	let vc = Chart.getChart("vote-chart")
+	if(vc != undefined){
+		vc.destroy()
+
+	}
+
+    //let votechart = document.getElementById("vote-chart");
+	let votec = $("#vote-chart");
+	votec.html("")
+	vc = new Chart(votec, {
         type: 'bar',
         height: 550,
 
@@ -235,8 +240,7 @@ function create_chart(options, live_votes) {
             indexAxis: 'y',
         }
     });
-
-    return vc
+    return
 }
 
 
