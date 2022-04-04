@@ -51,15 +51,15 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">X</button>
-                        <h2 class="modal-title">Fyll inn poll-tittel og beskrivelse</h2>
+                        <h2 class="modal-title">Fyll inn avstemning-tittel og beskrivelse</h2>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Poll-tittel</label>
+                            <label>Avstemning-tittel</label>
                             <input id="pollTittel" onchange=validerPollTittel(this.value) type="text" name="tittel" id="tittel" class="form-control" />
                             <span id="feilPollTittel" style="color: red"></span>
                         </div>
-                        <label>Poll-Sluttdato</label>
+                        <label>Avstemning-sluttdato</label>
                         <input id="pollSluttDato" type="date" name="pollSluttDato" onchange=validerPollSluttDato(this.value) min="2022-01-01" max="2050-01-01" id="sluttdato" class="form-control" />
                         <span id="feilSluttDato" style="color: red"></span>
                         <br />
@@ -74,7 +74,7 @@
                         <script src="/JS/adminside.js"></script>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" name="opprett_button" onclick="createPoll()" id="opprett_button" class="btn btn-primary">Opprett poll</button>
+                        <button type="button" name="opprett_button" onclick="createPoll()" id="opprett_button" class="btn btn-primary">Opprett avstemning</button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">close</button>
                     </div>
                 </div>

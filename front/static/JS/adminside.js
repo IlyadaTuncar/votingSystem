@@ -161,7 +161,7 @@ function validerPollTittel(tittel) {
     const regexp = /^[a-zA-ZæøåÆØÅ.0-9 \-]{2,100}$/;
     const ok = regexp.test(tittel);
     if (!ok || (tittel = '')) {
-        $("#feilPollTittel").html("Poll tittel må fylles ut med minst 2 bokstaver.")
+        $("#feilPollTittel").html("Avtemning tittel må fylles ut med minst 2 bokstaver.")
         return false
     } else {
         $("#feilPollTittel").html("");
@@ -173,7 +173,7 @@ function validerPollBeskrivelse(beskrivelse) {
     const regexp = /^[a-zA-ZæøåÆØÅ.0-9 \-]{2,500}$/;
     const ok = regexp.test(beskrivelse);
     if (!ok || (beskrivelse = '')) {
-        $("#feilBeskrivelse").html("Poll beskrivelse må fylles ut med minst 2 bokstaver.")
+        $("#feilBeskrivelse").html("Avtemning beskrivelse må fylles ut med minst 2 bokstaver.")
         return false
     } else {
         $("#feilBeskrivelse").html("");
@@ -186,7 +186,7 @@ function validerPollSluttDato(sluttdato) {
     const regexp = /^\d{4}-\d{2}-\d{2}$/;
     const ok = regexp.test(sluttdato);
     if (!ok || (sluttdato = '')) {
-        $("#feilSluttDato").html("Polldato må fylles ut med riktig format.")
+        $("#feilSluttDato").html("Avtemning dato må fylles ut med riktig format.")
         return false
     } else {
         $("#feilSluttDato").html("");
