@@ -1,3 +1,5 @@
+from datetime import *
+import datetime
 from http import client
 from select import select
 from turtle import title
@@ -139,11 +141,20 @@ def db_add_vote(vote):
 		con = open_con()
 		cur = con.cursor()
 		#execute query on poll table
+		select_sluttdato_query = f"select sluttdato from tbl_poll where id = {vote.get('poll_id')};"
+		cur.execute(select_sluttdato_query)
+		rowSluttsato = cur.fetchone()
+		
+		endDate = datetime.datetime.strptime(rowSluttsato[0], "%Y-%m-%d").strftime("%Y-%m-%d")
+		today = date.today().strftime('%Y-%m-%d')
+	
+		if (today > endDate):
+			raise PermissionError
 
 		select_mail_query = f"select count(tbl_vote.email) from tbl_vote inner join tbl_option on tbl_option.id = tbl_vote.option_id where tbl_option.poll_id = {vote.get('poll_id')} and tbl_vote.email = '{vote.get('email')}';"
 		cur.execute(select_mail_query)
-		row = cur.fetchone()
-		if (row[0]>0):
+		rowMail = cur.fetchone()
+		if (rowMail[0]>0):
 			raise ValueError
 
 		vars = ( vote.get('option_id'), vote.get('email'))
@@ -158,6 +169,8 @@ def db_add_vote(vote):
 		return 'Success'
 	except ValueError:
 		return 'Existing mail'
+	except PermissionError:
+		return 'Poll outdated'
 	except:
 		return 'Fail'
 
