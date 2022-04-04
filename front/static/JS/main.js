@@ -21,7 +21,7 @@ function formaterPolls(polls) {
 	let table = 
 	"<table class='table'>" +
 		"<thead>" + 
-			"<tr><th scope='col'>Poll tittel</th><th scope='col'>Sluttdato</th><th scope='col'>Link</th></tr>" +
+			"<tr><th scope='col'>Avstemning tittel</th><th scope='col'>Sluttdato</th><th scope='col'>Link</th></tr>" +
 		"</thead>" + 
 		"<tbody>"
 	for (p of polls) {
@@ -29,7 +29,7 @@ function formaterPolls(polls) {
 		table += "<tr>" + 
 			"<td>" + p[2] + "</td>" +
 			"<td>" + p[4] + "</td>" +
-			"<td><a href='" +url+ "'>Gå til poll</a></td>" +
+			"<td><a href='" +url+ "'>Gå til avstemning</a></td>" +
 			"</tr>"
 	}
 	table += "</tbody>" +

@@ -15,6 +15,12 @@ function openVideo(video_url) {
 
 }
 
+function visSluttResultat(){
+	livevotes = get_live_votes()
+	create_chart(livevotes)
+	show_live_votes_modal()
+}
+
 function sluttDatoFunksjon(pollSluttDato) {
 
     var sluttDato = new Date(pollSluttDato);
@@ -23,8 +29,17 @@ function sluttDatoFunksjon(pollSluttDato) {
     todayDate.setHours(0, 0, 0, 0);
     sluttDato.setHours(0, 0, 0, 0);
 
+	let table = '<button type="button" onclick="visSluttResultat()" class="btn btn-sm btn-secondary">Se resultat</button>';
+
     if (sluttDato.getTime() < todayDate.getTime()) {
-        window.location.href = '/avsluttetPoll'
+        var x = document.getElementsByClassName("btn btn-sm btn-secondary");
+        var i;
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+		$(".pollBeskrivelse").html("")
+		$("#avsluttetPollBeskjed").html("Denne avstemningen er avsluttet")
+		$(".avsluttetPollButton").html(table)
     }
 }
 
