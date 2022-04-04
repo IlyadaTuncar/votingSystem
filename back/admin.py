@@ -81,7 +81,7 @@ def register_vote():
 	if(data=='Success'):
 		return jsonify('Stemmen din ble registrert. Takk for din stemme!'), 201
 	if(data=='Poll outdated'):
-		return jsonify('Stemmingen er desverre avsluttet', 400)
+		return jsonify('Stemmingen er desverre avsluttet'), 400
 	return jsonify('Kunne ikke lagre stemme'), 400
 	
 
