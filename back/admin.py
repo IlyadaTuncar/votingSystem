@@ -1,8 +1,5 @@
 #!flask/bin/python
-from asyncore import poll
-import sys
 from flask import Flask, render_template, request, redirect, Response, send_from_directory, url_for, jsonify
-import json
 from database_repo import *
 
 app = Flask(__name__,
@@ -58,7 +55,7 @@ def serve_admin():
 	return render_template('adminside.html')
 
 
-@app.route('/fan/<int:id>', methods = ['GET', 'POST'])
+@app.route('/fan/<int:id>', methods = ['GET'])
 def serve_fan(id):
 	return render_template('fanside.html', pid=id)
 
