@@ -162,8 +162,8 @@ function createVote() {
 			$("#myModal").modal('hide');
 			alert(data);
 			livevotes = get_live_votes()
-			create_vote_graphs(livevotes)
-			show_vote_graphs()
+			//create_vote_graphs(livevotes)
+			//show_vote_graphs()
 			create_chart(livevotes)
 			show_live_votes_modal()
 		},
@@ -191,7 +191,7 @@ function get_live_votes() {
     });
     return live_votes
 }
-
+/*
 function show_vote_graphs() {
     $(".vote-text").show()
     $(".vote-graph").show()
@@ -212,7 +212,7 @@ function create_vote_graphs(live_votes) {
         $(htmltext).text("" + lv.vote_count + " har stemt for dette målet")
         $(htmlgraph).html('<div style="width:' + share_of_votes + '%;background-color: #10253e;height:100%;"></div>')
     }
-}
+}*/
 
 function create_chart(live_votes) {
 	if(live_votes.length < 1){
