@@ -2,7 +2,6 @@ $(document).ready(function() {
     getPoll(pid)
 })
 
-// må lage en funksjon her med en for løkke som oppretter videospilleren, og linken ved hjelp av html kode, akk som i admin
 
 function openVideo(video_url) {
     var videoElm = videojs("videoPlayer");
@@ -127,7 +126,7 @@ function getPoll(id) {
     });
 }
 
-//utvid mail sjekken så den fungerer bedre -- Lagd funskjonen. Kan lage flere om dette
+
 function sjekkMail(mail) {
     const regexp = /^[a-z0-9.]+@[a-z]+\.[a-z]{2,3}$/;
     const ok = regexp.test(mail);
@@ -151,7 +150,7 @@ function createVote() {
     }
 
     let vote = { "poll_id": pid, "option_id": option_id, "email": email }
-	/////////// hvis dette funker trenger ikke metoden å være asynce:false lenger
+
     $.ajax({
         url: '/newvote',
         method: "POST",
@@ -189,7 +188,6 @@ function get_live_votes() {
             // Det vil si id'en til vidoene og antall stemmer den har
             live_votes = data
         }
-		// trenger ikke noe error function, live votes er et tomt array
     });
     return live_votes
 }

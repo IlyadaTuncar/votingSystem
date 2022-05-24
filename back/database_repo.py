@@ -1,8 +1,5 @@
 from datetime import *
 import datetime
-from http import client
-from select import select
-from turtle import title
 import psycopg2
 def open_con():
 	con = psycopg2.connect(
@@ -11,7 +8,7 @@ def open_con():
 					user = "postgres",
  					password = "")
 	return con
- #get metoder for poll
+
 
 def format_row_to_poll(row, options):
 	poll = {'id': row[0], "client_id" : row[1], "title": row[2], "poll_description": row[3], "pollSluttDato": row[4], "options": options}
@@ -69,7 +66,7 @@ def db_get_poll_by_id(pid):
 	except:
 		return 'Fail'
 
-#håndter feilmelding f.eks hvis poll_id ikke er et tall
+
 def db_get_options_for_poll_id(poll_id):
 	#cursor 
 	con = open_con()
@@ -87,9 +84,7 @@ def db_get_options_for_poll_id(poll_id):
 	return options
 
 
-###########################
-#håndter feilmeldinger så programmet ikke krasjer
-###########################
+
 def db_add_poll_and_options(poll):
 	try:
 		con = open_con()
@@ -107,10 +102,6 @@ def db_add_poll_and_options(poll):
 		cur.close()
 		con.close()
 
-		### Hvis man av en eller annen grunn ikke får lagt inn options med løkken under
-		### så bør poll raden som blir lagret over slettes
-		### , men jeg ser ikke hvordan det skal bli tilfelle.
-		### Siden brukeren ikke har mulighet til å tukle med dataene til options
 		for o in poll.get('options'):
 			db_add_opption(pid, o)
 		

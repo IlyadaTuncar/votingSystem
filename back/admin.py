@@ -14,11 +14,9 @@ def get_polls():
 		return jsonify('Kunne ikke hente avstemninger'), 404
 	return jsonify(data)
 
-### denne metoden kan slettes
+
 @app.route('/get_polls', methods = ['GET'])
 def get_options():
-	#henter siste poll
-	#dette skal endres i framtiden
 	data = db_get_last_added_poll()
 	if(data=='Fail'):
 		return jsonify('Kunne ikke hente avstemning'), 404
@@ -46,7 +44,6 @@ def create_poll():
 
 @app.route('/', methods = ['GET','POST'])
 def output():
-	# serve index template
 	return render_template('index.html')
 
 
@@ -69,8 +66,7 @@ def send_js(path):
 
 @app.route('/newvote', methods = ['POST'])
 def register_vote():
-	# serve index template
- 	# legg til i riktig vote
+
 	request_data = request.json
 	data = db_add_vote(request_data)
 	if(data=='Existing mail'):
@@ -90,5 +86,4 @@ def send_live_votes(poll_id):
 	return jsonify(data), 200
 
 if __name__ == '__main__':
-	# run!
 	app.run(debug=True)

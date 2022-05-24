@@ -9,9 +9,6 @@ $(document).ready(function() {
             options = []
             let markedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
             for (cb of markedCheckboxes) {
-                //per nå legger vi bare til video linken, men senere skal vi legge til et helt option object
-                //et option object inkluderer tittel på mål, tekst beskrivelse, og video link
-
 				//lagrer tittel som en tittel vi kan bruke
 				let title = cb.dataset.scorer+" mot "+cb.dataset.motstander
                 options.push(createOption(title, cb.dataset.vidlink, cb.dataset.dato, cb.dataset.scorer, cb.dataset.scorerlag, cb.dataset.motstander, cb.dataset.thumbnail_url))
@@ -50,8 +47,7 @@ function createPoll() {
         $("#feilSluttDato").show();
         return
     }
-    //poster poll objectet til backend
-    //Ikke gjort enda. returner info om hvilken poll id den nye pollen har til nettsiden /opprettetPoll
+
     if (postSetPoll(poll)) {
         window.location.href = '/opprettetPoll'
     } else {
@@ -61,8 +57,7 @@ function createPoll() {
     return
 }
 
-//Denne metoden skal senere ta inn tittel og text i tillegg
-//Returnerer et json object
+
 function createOption(title, video_url, dato, scorer, scorerlag, motstander, thumbnail_url) {
     return {
         "title": title,
@@ -95,9 +90,7 @@ function formaterTitler() {
 
 function postSetPoll(poll) {
     let output = "";
-    /*$.post('/create_poll', poll, function(data){
-    	console.log(data)
-    })*/
+
     $.ajax({
         url: '/create_poll',
         method: "POST",
@@ -110,7 +103,6 @@ function postSetPoll(poll) {
         }
     })
 
-    //returner info om suksess eller feil ved oppretting av poll og send det til den nye nettsiden
     if (output == "Poll er opprettet") {
         return true
     } else {
@@ -118,7 +110,7 @@ function postSetPoll(poll) {
     }
 }
 
-//Her prøver jeg å hente videoer fra api og formatere videoene
+
 const api_url = "https://api.forzasys.com/eliteserien/playlist/?filters=%5B%22official%22%5D&tags=%5B%7B%22action%22:%22goal%22%7D%5D&orderby=date&count=6&from=0"
 
 async function getapi() {
